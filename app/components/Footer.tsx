@@ -51,7 +51,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className={`space-y-2 mt-10 text-xs text-center md:text-left ${anonymousPro.className}`}>
+            <div className={`flex flex-col md:flex-row md:justify-between gap-2 mt-10 text-xs text-center md:text-left ${anonymousPro.className}`}>
                 <p>© 2023 3 Sided Cube</p>
                 <p>Let&apos;s Build Tech For Good</p>
             </div>
