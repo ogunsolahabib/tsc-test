@@ -7,6 +7,10 @@ html{
   box-sizing: border-box;
 }
 
+:root {
+  --tsc-error-color: #DC3545;
+  --tsc-pink: #F70087;
+ }
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

@@ -8,10 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'tsc-pink': '#F70087',
+        'tsc-green': '#A0FF1F',
+        'tsc-mid-grey': '#C3C3C3',
+        'tsc-light-grey': '#F8F8F8',
+        'tsc-error-red':'#F40256'
+      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'tsc-gradient': "url('/tsc-green-blobs-bg.png'), linear-gradient(81deg, #A0FF1F 13.17%, #00ED71 86.83%)",
       },
     },
   },
