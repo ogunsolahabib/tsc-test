@@ -1,11 +1,11 @@
 import Image from "next/image";
 
 import { Anonymous_Pro } from 'next/font/google'
-import Twitter from "../icons/Twitter";
-import Instagram from "../icons/Instagram";
-import Facebook from "../icons/Facebook";
-import Linkedin from "../icons/Linkedin";
-import Youtube from "../icons/Youtube";
+import Twitter from "../../icons/Twitter";
+import Instagram from "../../icons/Instagram";
+import Facebook from "../../icons/Facebook";
+import Linkedin from "../../icons/Linkedin";
+import Youtube from "../../icons/Youtube";
 
 
 const anonymousPro = Anonymous_Pro({
