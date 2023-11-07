@@ -44,19 +44,22 @@ const Rating = () => {
         </div>
         <div className="space-y-5 p-4 w-full md:w-[44rem] mx-auto">
             <RatingProgress marker={progress} progress={progress} />
-            <div className="grid grid-cols-5 gap-3 mt-5">
+            <div className="grid md:grid-cols-5 gap-3 mt-5">
                 {ratingsList.map((rating) => (
-                    <button key={rating.value} className="flex flex-col items-center justify-center" onClick={() => setValue(rating.value)}>
-                        <div
-                            className={classNames("w-fit h-fit p-3", { 'border-4 border-tsc-pink': value === rating.value })}>
-                            {rating.icon}
-                        </div>
-                        <p className="text-center capitalize mt-4">{rating.label}</p>
-                    </button>
+                    <>
+                        <button key={rating.value} className="flex flex-col items-center justify-center" onClick={() => setValue(rating.value)}>
+                            <div
+                                className={classNames("w-fit h-fit p-3", { 'border-4 border-tsc-pink': value === rating.value })}>
+                                {rating.icon}
+                            </div>
+                            <p className="text-center capitalize md:mt-4">{rating.label}</p>
+                        </button>
+
+                    </>
                 ))}
             </div>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-4">
             <Button sizes='small' variant="secondary" >back</Button>
             <Button sizes='medium' variant="primary">next</Button>
         </div>

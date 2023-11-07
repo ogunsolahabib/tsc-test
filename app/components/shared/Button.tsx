@@ -16,9 +16,9 @@ const Button: React.FC<ButtonProps & React.HTMLProps<HTMLButtonElement>> = ({ va
         {
             "bg-black text-white hover:bg-white hover:text-black hover:border-2 hover:border-black disabled:bg-tsc-mid-grey disabled:hover:border-0 disabled:hover:text-white": variant === "primary",
             "bg-white text-black border-2 border-black hover:bg-black hover:text-white disabled:border-gray-300 disabled:text-gray-400 disabled:text-gray-500": variant === "secondary",
-            'min-w-[18rem]': sizes === "large",
-            'min-w-[12rem]': sizes === "medium",
-            'min-w-[8rem]': sizes === "small",
+            'min-w-[12rem] md:min-w-[18rem]': sizes === "large",
+            'min-w-[8rem] min-w-[12rem]': sizes === "medium",
+            'md:min-w-[8rem]': sizes === "small",
         }, className
     )
 
