@@ -11,7 +11,7 @@ const NominateReasoning = () => {
         </div>
         <div className="p-5 space-y-10">
             <div className='space-y-3'>
-                <h1 className="text-3xl font-semibold uppercase">I&apos;d like to nominate <span className="text-tsc-pink">DAVID</span> because...</h1>
+                <h1 className="text-2xl md:text-3xl font-semibold uppercase">I&apos;d like to nominate <span className="text-tsc-pink">DAVID</span> because...</h1>
                 <p className={anonymousPro.className + ' max-w-[600px] '}>Please let us know why you think this cube deserves the ‘cube of the month’ title 🏆⭐</p>
             </div>
 

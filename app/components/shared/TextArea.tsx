@@ -15,13 +15,11 @@ const TextArea: React.FC<TextAreaProps & React.HTMLProps<HTMLTextAreaElement>> =
 
 
 
-    const classes = classNames(className, anonymousPro.className, "w-full border-2 border-black p-2 outline-none caret-tsc-pink")
+    const classes = classNames(className, anonymousPro.className, "w-full border-2 border-black p-2 outline-none caret-tsc-pink");
+
     return <div>
         <InputLabel required={required} htmlFor={name}>{label}</InputLabel>
         <textarea id={name} name={name} className={classes} {...props} />
-
-
-
     </div>
 
 }
