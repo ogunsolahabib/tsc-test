@@ -4,6 +4,7 @@ import classNames from "classnames"
 import { useState } from "react";
 import SelectOption from "./SelectOption";
 import { anonymousPro } from "@/app/fonts";
+import InputLabel from "./InputLabel";
 
 
 interface SelectProps {
@@ -62,10 +63,7 @@ const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label
     }
     const selectClasses = classNames('w-full md:w-96 md:min-w-[18rem] relative',
         props.className)
-    const labelClasses = classNames('font-bold relative', {
-        'before:content-["*"] before:text-tsc-error-red before:mt-1 before:text before:left-0 before:absolute align-middle': required,
-        'pl-3': required
-    })
+
     const inputClasses = classNames(anonymousPro.className,
         'w-full border-0 cursor-pointer outline-none p-3',
     )
@@ -74,7 +72,7 @@ const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label
     return (
         <div data-dropdown-toggle="dropdown" className={selectClasses} onClick={onToggle} >
 
-            <label htmlFor={name} className={labelClasses}>{label}</label>
+            <InputLabel htmlFor={name} required={required}>{label}</InputLabel>
             <div className="flex items-center border border-tsc-mid-grey pr-3 mt-3">
                 <input name={name} className={inputClasses} id="dropdownDefaultButton" value={displayLabel || placeholder}
                     readOnly
