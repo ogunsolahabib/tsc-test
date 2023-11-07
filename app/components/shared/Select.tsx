@@ -3,12 +3,8 @@
 import classNames from "classnames"
 import { useState } from "react";
 import SelectOption from "./SelectOption";
-import { Anonymous_Pro } from "next/font/google";
+import { anonymousPro } from "@/app/fonts";
 
-const anonymousPro = Anonymous_Pro({
-    weight: '400',
-    subsets: ['latin'],
-})
 
 interface SelectProps {
     label: React.ReactNode,

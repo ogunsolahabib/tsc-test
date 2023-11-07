@@ -5,9 +5,13 @@ import Container from "../shared/Container";
 import Select from "../shared/Select";
 import { useState } from "react";
 import Button from "../shared/Button";
+import ConfirmCloseModal from "./ConfirmCloseModal";
+import { anonymousPro } from "@/app/fonts";
 
 export default function Nominate() {
     const [value, setValue] = useState('');
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return <Container>
         <div className='w-full h-[320px] relative'>
@@ -16,7 +20,7 @@ export default function Nominate() {
         <div className="p-5 space-y-10">
             <div className='space-y-3'>
                 <h1 className="text-3xl font-semibold uppercase">I&apos;d like to nominate...</h1>
-                <p>Please select a cube who you feel has done something honourable this month or just all round has a great work ethic.</p>
+                <p className={anonymousPro.className}>Please select a cube who you feel has done something honourable this month or just all round has a great work ethic.</p>
 
             </div>
             <Select required name='cube' label="Cube's name" value={value} onChange={(e) => setValue(e.target.value)} options={[
@@ -37,9 +41,10 @@ export default function Nominate() {
             />
 
             <div className="flex justify-between">
-                <Button size={'small'} variant="secondary">back</Button>
-                <Button size={'medium'} variant="primary" disabled={!value}>next</Button>
+                <Button sizes='small' variant="secondary" onClick={() => setIsModalOpen(true)}>back</Button>
+                <Button sizes='medium' variant="primary" disabled={!value}>next</Button>
             </div>
         </div>
+        <ConfirmCloseModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </Container>
 }
