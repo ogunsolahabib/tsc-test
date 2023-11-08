@@ -64,8 +64,8 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
             </div>
         </div>
         <div className="flex justify-between gap-4">
-            <Button sizes='small' variant="secondary" >back</Button>
-            <Button sizes='medium' variant="primary">next</Button>
+            <Button width='small' variant="secondary" >back</Button>
+            <Button width='medium' variant="primary">next</Button>
         </div>
     </div >
 }

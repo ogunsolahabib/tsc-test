@@ -41,8 +41,8 @@ export default function NominateStart() {
             />
 
             <div className="flex justify-between">
-                <Button sizes='small' variant="secondary" onClick={() => setIsModalOpen(true)}>back</Button>
-                <Button sizes='medium' variant="primary" disabled={!value}>next</Button>
+                <Button width='small' variant="secondary" onClick={() => setIsModalOpen(true)}>back</Button>
+                <Button width='medium' variant="primary" disabled={!value}>next</Button>
             </div>
         </div>
         <ConfirmCloseModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />

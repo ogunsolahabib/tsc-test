@@ -31,14 +31,14 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
 
             <TextArea rows={6} required label={"Reasoning"} />
             <div className="flex justify-between">
-                <Button sizes='small' variant="secondary" onClick={() => {
+                <Button width='small' variant="secondary" onClick={() => {
                     setProgress(1);
                 }} >back</Button>
                 <Button onClick={() => {
                     router.push('/nominate/rating');
                     // setProgress(3);
                 }}
-                    sizes='medium' variant="primary">next</Button>
+                    width='medium' variant="primary">next</Button>
             </div>
         </div>
     </ >
