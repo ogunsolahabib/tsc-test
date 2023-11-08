@@ -18,7 +18,7 @@ export default function Layout({
 }) {
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-8">
+        <main className="flex min-h-screen px-8 py-20">
             <Container>
                 {children}
             </Container>
