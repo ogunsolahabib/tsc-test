@@ -1,10 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import useProgress from '@/app/hooks/useProgress';
-import useLocalStorage from '@/app/hooks/useLocalStorage';
 import classNames from 'classnames';
-
 
 const progressList = ['w-1/4', 'w-1/2', 'w-3/4', 'w-full'];
 
