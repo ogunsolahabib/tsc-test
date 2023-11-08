@@ -1,11 +1,25 @@
+'use client';
+
 import Image from "next/image"
-import Container from "../shared/Container"
 import { anonymousPro } from "@/app/fonts"
 import TextArea from "../shared/TextArea"
 import Button from "../shared/Button"
+import { useRouter } from "next/navigation";
+import useProgress from "@/app/hooks/useProgress";
+import { useEffect } from "react";
 
-const NominateReasoning = () => {
-    return <Container>
+
+const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> = ({ setProgress }) => {
+    const router = useRouter();
+
+    const { progress } = useProgress();
+    useEffect(() => {
+        setProgress(2);
+    }, [])
+
+
+    return <>
+
         <div className='w-full h-[320px] relative'>
             <Image src='/tsc-cotm.png' fill className='object-cover' alt='Man checking board' />
         </div>
@@ -17,11 +31,17 @@ const NominateReasoning = () => {
 
             <TextArea rows={6} required label={"Reasoning"} />
             <div className="flex justify-between">
-                <Button sizes='small' variant="secondary" >back</Button>
-                <Button sizes='medium' variant="primary">next</Button>
+                <Button sizes='small' variant="secondary" onClick={() => {
+                    setProgress(1);
+                }} >back</Button>
+                <Button onClick={() => {
+                    router.push('/nominate/rating');
+                    // setProgress(3);
+                }}
+                    sizes='medium' variant="primary">next</Button>
             </div>
         </div>
-    </Container >
+    </ >
 }
 
 export default NominateReasoning

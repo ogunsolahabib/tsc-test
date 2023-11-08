@@ -1,8 +1,15 @@
+'use client';
+
 import { anonymousPro } from "@/app/fonts";
 import OverviewItemCard from "./OverviewItemCard";
 import Button from "../shared/Button";
+import { useEffect, useLayoutEffect } from "react";
 
-export default function Overview() {
+export default function Overview({ setProgress }: { setProgress?: React.SetStateAction<any> }) {
+    useLayoutEffect(() => {
+        setProgress(4);
+    }, [])
+
     return <div className="p-5 space-y-10">
         <div className='space-y-3 text-center'>
             <h1 className="text-2xl md:text-3xl font-semibold uppercase">nomination overview</h1>

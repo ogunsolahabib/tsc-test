@@ -8,7 +8,7 @@ import VeryFiar from "@/app/icons/VeryFair"
 import VeryUnfair from "@/app/icons/VeryUnfair"
 import classNames from "classnames"
 import Image from "next/image"
-import { useState } from "react"
+import { useLayoutEffect, useState } from "react"
 import RatingProgress from "./RatingProgress"
 import Button from "../shared/Button"
 
@@ -25,12 +25,16 @@ const ratingsList = [{ value: 'very_unfair', label: 'Very unfair', icon: <VeryUn
 const calculateProgress = (index: number) => {
     return (index + 1) / (ratingsList.length) * 100;
 };
-const Rating = () => {
+const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) => {
     const [value, setValue] = useState<string | undefined>(undefined);
 
     const selectedIndex = ratingsList.findIndex((rating) => rating.value === value);
 
     const progress = calculateProgress(selectedIndex);
+
+    useLayoutEffect(() => {
+        setProgress(3);
+    }, []);
 
 
     return <div className="w-full space-y-10 p-5">
