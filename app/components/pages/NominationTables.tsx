@@ -6,6 +6,7 @@ import classNames from "classnames";
 import Container from "../shared/Container";
 import Table from "../shared/Table";
 import { anonymousPro } from "@/app/fonts";
+import TableEmptyState from "./TableEmptyState";
 
 export default function NominationTables() {
     const [active, setActive] = useState<'current' | 'closed'>('current');

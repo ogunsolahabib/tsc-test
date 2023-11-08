@@ -11,7 +11,7 @@ interface TableProps {
 }
 
 export default function Table({ columns, dataSource }: TableProps) {
-    return <div className="md:w-[76rem] relative mx-auto">
+    return <div className="relative mx-auto">
         <table className="w-full text-sm text-left text-gray-500 ">
             <thead className="text-xs bg-tsc-light-grey uppercase text-black">
                 <tr>
