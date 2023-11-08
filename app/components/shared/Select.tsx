@@ -3,12 +3,9 @@
 import classNames from "classnames"
 import { useState } from "react";
 import SelectOption from "./SelectOption";
-import { Anonymous_Pro } from "next/font/google";
+import { anonymousPro } from "@/app/fonts";
+import InputLabel from "./InputLabel";
 
-const anonymousPro = Anonymous_Pro({
-    weight: '400',
-    subsets: ['latin'],
-})
 
 interface SelectProps {
     label: React.ReactNode,
@@ -17,13 +14,15 @@ interface SelectProps {
     options: Array<{ label: string, value: string }>,
     onChange: (event: any) => void,
     placeholder?: string,
-    required?: boolean
+    required?: boolean,
+    register?: any;
+    field?: any;
 }
 
 
 
 
-const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label, value, name, options = [], onChange, placeholder = "Select an Option", required, ...props }) => {
+const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label, value, name, options = [], onChange, placeholder = "Select an Option", required, register, field, ...props }) => {
     const [visibleOptions, setVisibleOptions] = useState(false);
     const dropdownClasses = classNames({
         "block": visibleOptions,
@@ -66,10 +65,7 @@ const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label
     }
     const selectClasses = classNames('w-full md:w-96 md:min-w-[18rem] relative',
         props.className)
-    const labelClasses = classNames('font-bold relative', {
-        'before:content-["*"] before:text-tsc-error-red before:mt-1 before:text before:left-0 before:absolute align-middle': required,
-        'pl-3': required
-    })
+
     const inputClasses = classNames(anonymousPro.className,
         'w-full border-0 cursor-pointer outline-none p-3',
     )
@@ -78,12 +74,14 @@ const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label
     return (
         <div data-dropdown-toggle="dropdown" className={selectClasses} onClick={onToggle} >
 
-            <label htmlFor={name} className={labelClasses}>{label}</label>
+            <InputLabel htmlFor={name} required={required}>{label}</InputLabel>
             <div className="flex items-center border border-tsc-mid-grey pr-3 mt-3">
                 <input name={name} className={inputClasses} id="dropdownDefaultButton" value={displayLabel || placeholder}
                     readOnly
                     required
                 />
+                {/* hidden input */}
+                <input type="hidden" name={name} value={value} {...field} />
                 <svg className="w-2.5 h-2.5 ml-2.5 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" fill="none">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" className="stroke-tsc-pink" />
                 </svg>
@@ -91,7 +89,7 @@ const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label
 
 
             {/* <!-- Dropdown menu --> */}
-            <div id="dropdown" className={`${anonymousPro.className} z-10 ${dropdownClasses} bg-tsc-light-grey divide-y w-full absolute text-black`}>
+            <div id="dropdown" className={`${anonymousPro.className} z-10 ${dropdownClasses} bg-tsc-light-grey divide-y w-full absolute text-black h-36 overflow-y-auto`}>
                 <ul className="py-2 text-lg text-gray-700" aria-labelledby="dropdownDefaultButton">
                     {options.map((option) => {
                         return (

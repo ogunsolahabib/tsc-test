@@ -1,13 +1,11 @@
 
 import Landing from './components/pages/Landing'
-import NominateStart from './components/pages/NominateStart'
+
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-8">
-      {/* <Landing /> */}
-      <NominateStart />
-
+    <main className="flex md:min-h-[35rem] px-8 py-20">
+      <Landing />
     </main>
   )
 }

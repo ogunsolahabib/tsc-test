@@ -1,17 +1,13 @@
 import Image from "next/image";
 
-import { Anonymous_Pro } from 'next/font/google'
 import Twitter from "../../icons/Twitter";
 import Instagram from "../../icons/Instagram";
 import Facebook from "../../icons/Facebook";
 import Linkedin from "../../icons/Linkedin";
 import Youtube from "../../icons/Youtube";
+import { anonymousPro } from "@/app/fonts";
 
 
-const anonymousPro = Anonymous_Pro({
-    weight: '400',
-    subsets: ['latin'],
-})
 
 const locations = [
     { name: "Bournemouth", address: "123 Fake Street, Bournemouth" },

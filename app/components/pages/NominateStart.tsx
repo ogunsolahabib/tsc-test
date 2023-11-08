@@ -1,45 +1,61 @@
 'use client';
 
 import Image from "next/image";
-import Container from "../shared/Container";
 import Select from "../shared/Select";
 import { useState } from "react";
 import Button from "../shared/Button";
+import ConfirmCloseModal from "./ConfirmCloseModal";
+import { anonymousPro } from "@/app/fonts";
+import { Controller, useForm } from "react-hook-form";
+import ProgressUpdater from "./ProgressUpdater";
 
-export default function Nominate() {
+export default function NominateStart({ setProgress, allNominees }: { setProgress: (progress: number, allNominees?: any[]) => void }) {
     const [value, setValue] = useState('');
 
-    return <Container>
-        <div className='w-full h-[320px] relative'>
-            <Image src='/tsc-cotm.png' fill className='object-cover' alt='Man checking board' />
-        </div>
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const { register, control, handleSubmit } = useForm();
+
+
+
+
+    return <>
+        <ProgressUpdater setProgress={setProgress} value={1} />
         <div className="p-5 space-y-10">
+            <div className='w-full h-[180px] relative'>
+                <Image src='/tsc-select-nominee-banner.png' fill className='object-cover' alt='Man checking board' />
+            </div>
             <div className='space-y-3'>
-                <h1 className="text-3xl font-semibold uppercase">I&apos;d like to nominate...</h1>
-                <p>Please select a cube who you feel has done something honourable this month or just all round has a great work ethic.</p>
+                <h1 className="text-2xl md:text-3xl font-semibold uppercase">I&apos;d like to nominate...</h1>
+                <p className={anonymousPro.className}>Please select a cube who you feel has done something honourable this month or just all round has a great work ethic.</p>
 
             </div>
-            <Select required name='cube' label="Cube's name" value={value} onChange={(e) => setValue(e.target.value)} options={[
-                {
-                    value: '1',
-                    label: 'Option 1',
-                },
-                {
-                    value: '2',
-                    label: 'Option 2',
-                },
-                {
-                    value: '3',
-                    label: 'Option 3',
-                },
-            ]}
+            <form onSubmit={handleSubmit((data) => {
+                console.log(data)
+            })}>
 
-            />
 
-            <div className="flex justify-between">
-                <Button size={'small'} variant="secondary">back</Button>
-                <Button size={'medium'} variant="primary" disabled={!value}>next</Button>
-            </div>
+                <Controller name="cube" control={control} render={({ field }) => (
+                    <Select required name='cube' label="Cube's name" value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        field={field}
+                        options={allNominees.map((nominee: any) => ({
+                            label: nominee.first_name + ' ' + nominee.last_name,
+                            value: nominee.nominee_id
+                        }))}
+                        register={register}
+
+                    />
+                )}
+                />
+
+
+                <div className="flex justify-between mt-6">
+                    <Button width='small' variant="secondary" onClick={() => setIsModalOpen(true)}>back</Button>
+                    <Button width='medium' variant="primary" disabled={!value} type="submit">next</Button>
+                </div>
+            </form>
         </div>
-    </Container>
+        <ConfirmCloseModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
 }

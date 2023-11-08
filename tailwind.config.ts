@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         'tsc-pink': '#F70087',
+        'tsc-tomato-pink': '#F40256',
         'tsc-green': '#A0FF1F',
         'tsc-mid-grey': '#C3C3C3',
         'tsc-light-grey': '#F8F8F8',
