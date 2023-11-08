@@ -12,11 +12,11 @@ const Modal: React.FC<ModalProps & React.HTMLProps<HTMLDivElement>> = ({ childre
         'block': isOpen,
         'hidden': !isOpen
     },
-        'fixed inset-0 z-50 w-full p-6 overflow-x-hidden overflow-y-auto md:inset-0 h-full max-h-full bg-black bg-opacity-70'
+        'fixed inset-0 z-50 w-full md:p-6 overflow-x-hidden overflow-y-auto md:inset-0 h-full max-h-full bg-black bg-opacity-70'
     )
     return <div id="default-modal" tabIndex={-1} aria-hidden="true" className={classes}>
         <div className="relative w-full max-w-2xl h-full m-auto">
-            <div className="absolute inset-0 bg-white  shadow p-6 h-fit m-auto w-[500px]">
+            <div className="absolute bottom-0 md:inset-0 bg-white shadow p-6 h-fit my:auto md:m-auto w-full md:w-[500px]">
                 {children}
             </div>
         </div>
