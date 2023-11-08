@@ -6,7 +6,6 @@ import useLocalStorage from '@/app/hooks/useLocalStorage';
 import classNames from 'classnames';
 
 
-// Reduce a fraction by finding the Greatest Common Divisor and dividing by it.
 const progressList = ['w-1/4', 'w-1/2', 'w-3/4', 'w-full'];
 
 const Progress: React.FC<{ value: number }> = ({ value }) => {
