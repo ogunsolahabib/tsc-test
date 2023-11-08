@@ -14,13 +14,15 @@ interface SelectProps {
     options: Array<{ label: string, value: string }>,
     onChange: (event: any) => void,
     placeholder?: string,
-    required?: boolean
+    required?: boolean,
+    register?: any;
+    field?: any;
 }
 
 
 
 
-const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label, value, name, options = [], onChange, placeholder = "Select an Option", required, ...props }) => {
+const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label, value, name, options = [], onChange, placeholder = "Select an Option", required, register, field, ...props }) => {
     const [visibleOptions, setVisibleOptions] = useState(false);
     const dropdownClasses = classNames({
         "block": visibleOptions,
@@ -78,6 +80,8 @@ const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label
                     readOnly
                     required
                 />
+                {/* hidden input */}
+                <input type="hidden" name={name} value={value} {...field} />
                 <svg className="w-2.5 h-2.5 ml-2.5 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" fill="none">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" className="stroke-tsc-pink" />
                 </svg>
@@ -85,7 +89,7 @@ const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label
 
 
             {/* <!-- Dropdown menu --> */}
-            <div id="dropdown" className={`${anonymousPro.className} z-10 ${dropdownClasses} bg-tsc-light-grey divide-y w-full absolute text-black`}>
+            <div id="dropdown" className={`${anonymousPro.className} z-10 ${dropdownClasses} bg-tsc-light-grey divide-y w-full absolute text-black h-36 overflow-y-auto`}>
                 <ul className="py-2 text-lg text-gray-700" aria-labelledby="dropdownDefaultButton">
                     {options.map((option) => {
                         return (

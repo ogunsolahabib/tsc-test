@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps & React.HTMLProps<HTMLButtonElement>> = ({ va
         }, className
     )
 
-    return <button className={classes} {...props}>{loading ? <span className="flex m-auto w-fit animate-spin"><Loading /></span> : children}</button>;
+    return <button disabled={loading || props.disabled} className={classes} {...props}>{loading ? <span className="flex m-auto w-fit animate-spin"><Loading /></span> : children}</button>;
 }
 
 export default Button;

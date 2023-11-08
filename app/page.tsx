@@ -1,11 +1,11 @@
 
-import NominateReasoning from './components/pages/NominateReasoning'
+import Landing from './components/pages/Landing'
 
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen px-8 py-20">
-      <NominateReasoning />
+    <main className="flex md:min-h-[35rem] px-8 py-20">
+      <Landing />
     </main>
   )
 }

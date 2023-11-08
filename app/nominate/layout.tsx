@@ -18,7 +18,7 @@ export default function Layout({
 }) {
 
     return (
-        <main className="flex min-h-screen px-8 py-20">
+        <main className="flex md:min-h-[35rem] px-8 py-20">
             <Container>
                 {children}
             </Container>

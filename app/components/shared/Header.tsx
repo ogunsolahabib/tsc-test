@@ -4,7 +4,10 @@ import Inbox from "@/app/icons/Inbox";
 
 
 export default function Header() {
-    return <header className="w-full p-5 flex items-center justify-between bg-black text-white"><LogoSvg />
+    return <header className="w-full p-5 flex items-center justify-between bg-black text-white">
+        <a href="/">
+            <LogoSvg />
+        </a>
         <div className="flex gap-5">
             <Plus />
             <Inbox />
