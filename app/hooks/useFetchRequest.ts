@@ -4,6 +4,7 @@ import useLocalStorage from "./useLocalStorage";
 
 export default function useFetchRequest(pathname: string) {
 
+
     const [data, setData] = useState<any>();
 
     const [loading, setLoading] = useState(false);
@@ -52,8 +53,44 @@ export default function useFetchRequest(pathname: string) {
             setLoading(false);
         }
     }
+    const DELETE = async () => {
+        setLoading(true);
+        console.log(authToken, 'authToken');
+        try {
+        const response = await fetch(`${API_BASE_URL}/${pathname}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${authToken}`
+            }
+        })
+        const json = await response.json();
+        setData(json);
+        setLoading(false)
+        } catch (err) {
+            console.log(err);
+            setLoading(false);
+        }
+    }
 
-    return { data, GET, POST, loading };
+    const PUT = async (data: any) => {
+        setLoading(true);
+        try {
+            const response = await fetch(`${API_BASE_URL}/${pathname}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${authToken}`
+                },
+                body: JSON.stringify(data)
+            })
+        } catch (err) {
+            console.log(err);
+            setLoading(false);
+        }
+    }
+
+    return { data, GET, POST, DELETE, PUT, loading };
 
 
 }

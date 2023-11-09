@@ -3,7 +3,8 @@ import { anonymousPro } from "@/app/fonts"
 type Column = {
     title: React.ReactNode;
     dataIndex: string;
-    width?: string
+    width?: string;
+    render?: (value: any, record?: any) => React.ReactNode;
 }
 interface TableProps {
     columns: Column[];
@@ -11,8 +12,8 @@ interface TableProps {
 }
 
 export default function Table({ columns, dataSource }: TableProps) {
-    return <div className="relative mx-auto">
-        <table className="w-full text-sm text-left text-gray-500 ">
+    return <div className="relative mx-auto w-full">
+        <table className="w-full table-fixed text-sm text-left text-gray-500 max-w-full overflow-x-auto">
             <thead className="text-xs bg-tsc-light-grey uppercase text-black">
                 <tr>
                     {columns.map(({ title, dataIndex }, i) => (
@@ -28,7 +29,7 @@ export default function Table({ columns, dataSource }: TableProps) {
                 {dataSource.map((item, i) => (
                     <tr key={i} className="bg-white border-b text-black">
                         {columns.map((column, i) => {
-                            const { dataIndex } = column;
+                            const { dataIndex, render } = column;
                             return (
                                 <td key={dataIndex || i}
                                     className=" px-6 py-3 truncate"
@@ -37,7 +38,7 @@ export default function Table({ columns, dataSource }: TableProps) {
                                         width: column.width
                                     } : undefined}
                                 >
-                                    {item[dataIndex]
+                                    {render ? render(item[dataIndex], item) : item[dataIndex]
                                     }
                                 </td>
                             );

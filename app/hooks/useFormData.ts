@@ -1,9 +1,20 @@
 import useLocalStorage from "./useLocalStorage";
 
-export default function useFormData() {
-    const {storedValue: formDataRaw, setValue: setFormData}=useLocalStorage('tsc-form-data', {});
 
-    const updateFormData = (newData: any) => {
+interface NominationFormData {
+    nominee_id?: string;
+    first_name?: string;
+    reason?: string;
+    rating?: string;
+}
+export default function useFormData() {
+    const {storedValue: formDataRaw, setValue}=useLocalStorage('tsc-form-data', {});
+
+    const setFormData = (data: NominationFormData) => {
+        setValue(data);
+    }
+
+    const updateFormData = (newData: NominationFormData) => {
         setFormData({...formData, ...newData});
     }
 

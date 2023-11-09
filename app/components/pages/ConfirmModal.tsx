@@ -25,7 +25,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm,
             description}</p>
 
         <div className="flex flex-col gap-3 mt-16">
-            <Button variant="secondary" onClick={onClose}>{confirmText}</Button>
+            <Button variant="secondary" onClick={onConfirm}>{confirmText}</Button>
             <Button variant="secondary" onClick={onClose}>{cancelText || 'Cancel'}</Button>
         </div>
     </Modal>
