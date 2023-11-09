@@ -1,7 +1,7 @@
 'use client';
 
 import classNames from "classnames"
-import { useState } from "react";
+import React, { useState } from "react";
 import SelectOption from "./SelectOption";
 import { anonymousPro } from "@/app/fonts";
 import InputLabel from "./InputLabel";
@@ -20,14 +20,14 @@ interface SelectProps {
 }
 
 
-
-
-const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label, value, name, options = [], onChange, placeholder = "Select an Option", required, register, field, ...props }) => {
+const Select = React.forwardRef(({ label, value, name, options = [], onChange, placeholder = "Select an Option", required, register, field, ...props }: SelectProps & React.HTMLProps<HTMLDivElement>, ref) => {
     const [visibleOptions, setVisibleOptions] = useState(false);
     const dropdownClasses = classNames({
         "block": visibleOptions,
         "hidden": !visibleOptions
     });
+
+
 
     const onSelect = (selection: any) => {
         const { value, label: selectedDisplayName } = selection;
@@ -76,12 +76,10 @@ const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label
 
             <InputLabel htmlFor={name} required={required}>{label}</InputLabel>
             <div className="flex items-center border border-tsc-mid-grey pr-3 mt-3">
-                <input name={name} className={inputClasses} id="dropdownDefaultButton" value={displayLabel || placeholder}
+                <input className={inputClasses} id="dropdownDefaultButton" value={displayLabel || placeholder}
                     readOnly
                     required
                 />
-                {/* hidden input */}
-                <input type="hidden" name={name} value={value} {...field} />
                 <svg className="w-2.5 h-2.5 ml-2.5 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" fill="none">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" className="stroke-tsc-pink" />
                 </svg>
@@ -107,6 +105,8 @@ const Select: React.FC<SelectProps & React.HTMLProps<HTMLDivElement>> = ({ label
             </div>
         </div>
     )
-}
+})
+
+Select.displayName = 'Select';
 
 export default Select

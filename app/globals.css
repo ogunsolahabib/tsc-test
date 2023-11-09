@@ -14,3 +14,9 @@ html{
   --tsc-mid-grey: #C3C3C3;
   --tsc-light-grey: #F8F8F8;
  }
+
+ @media screen and (min-width: 768px){
+   main{
+     min-height: calc(100vh - 21rem);
+    }
+  }

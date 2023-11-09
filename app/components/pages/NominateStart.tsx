@@ -2,21 +2,71 @@
 
 import Image from "next/image";
 import Select from "../shared/Select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../shared/Button";
 import ConfirmCloseModal from "./ConfirmCloseModal";
 import { anonymousPro } from "@/app/fonts";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, FieldValues, useForm } from "react-hook-form";
 import ProgressUpdater from "./ProgressUpdater";
+import { useRouter, useSearchParams } from "next/navigation";
+import useFormData from "@/app/hooks/useFormData";
+import routePaths from "@/app/utils/routePaths";
 
-export default function NominateStart({ setProgress, allNominees }: { setProgress: (progress: number, allNominees?: any[]) => void }) {
-    const [value, setValue] = useState('');
+export default function NominateStart({ setProgress, allNominees }: { setProgress?: (progress: number) => void, allNominees: any[] }) {
+
+    const searchParams = useSearchParams();
+
+    const nomination_id = searchParams.get('nomination_id');
+
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { register, control, handleSubmit } = useForm();
+    const { register, control, handleSubmit, watch, setValue } = useForm();
 
+    const [isNextActive, setIsNextActive] = useState(false);
 
+    const router = useRouter();
+
+    const { updateFormData, formData, resetFormData } = useFormData()
+
+    const selectedCube = watch('nominee_id');
+
+    useEffect(() => {
+        setIsNextActive(!!selectedCube);
+    }, [selectedCube]);
+
+    useEffect(() => {
+        if (formData.nominee_id) {
+            setValue('nominee_id', formData.nominee_id);
+        }
+    }, [])
+
+    const handleSave = async (data: FieldValues) => {
+        const res = await fetch(`/api/nominations/${nomination_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+            resetFormData();
+            router.push(routePaths.nominations);
+        }
+
+    }
+
+    const onFormSubmit = (data: FieldValues) => {
+        data.first_name = allNominees.find((nominee) => nominee.nominee_id === data.nominee_id)?.first_name;
+        if (nomination_id) {
+            return handleSave({
+                nominee_id: data.nominee_id,
+            });
+        }
+        updateFormData(data);
+        router.push(routePaths.reason);
+    }
 
 
     return <>
@@ -30,30 +80,22 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
                 <p className={anonymousPro.className}>Please select a cube who you feel has done something honourable this month or just all round has a great work ethic.</p>
 
             </div>
-            <form onSubmit={handleSubmit((data) => {
-                console.log(data)
-            })}>
-
-
-                <Controller name="cube" control={control} render={({ field }) => (
-                    <Select required name='cube' label="Cube's name" value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        field={field}
-                        options={allNominees.map((nominee: any) => ({
-                            label: nominee.first_name + ' ' + nominee.last_name,
-                            value: nominee.nominee_id
-                        }))}
+            <form onSubmit={handleSubmit(onFormSubmit)}>
+                <Controller name="nominee_id" control={control} render={({ field }) => (
+                    <Select required
+                        label="Cube's name"
+                        {...field}
+                        options={allNominees.map((nominee) => ({ label: `${nominee.first_name} ${nominee.last_name}`, value: nominee.nominee_id }))}
                         register={register}
-
                     />
                 )}
                 />
-
-
-                <div className="flex justify-between mt-6">
+                {nomination_id ? <div className="flex w-fit mt-8 mx-auto">
+                    <Button width='large' variant="primary" type="submit">Save</Button>
+                </div> : <div className="flex justify-between mt-6">
                     <Button width='small' variant="secondary" onClick={() => setIsModalOpen(true)}>back</Button>
-                    <Button width='medium' variant="primary" disabled={!value} type="submit">next</Button>
-                </div>
+                    <Button width='medium' variant="primary" disabled={!isNextActive} type="submit">next</Button>
+                </div>}
             </form>
         </div>
         <ConfirmCloseModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
