@@ -13,16 +13,12 @@ import ConfirmDeleteNominationModal from "./ConfirmDeleteNominationModal";
 import useFormData from "@/app/hooks/useFormData";
 import { useRouter } from "next/navigation";
 import routePaths from "@/app/utils/routePaths";
+import TableEmptyState from "./TableEmptyState";
+import { Nomination } from "@/app/types/Nomination";
+import TableMobile from "./TableMobile";
+import NominationActionButtons from "./NominationActionButtons";
 
-interface Nomination {
-    nomination_id: string;
-    nominee_id?: string;
-    first_name?: string;
-    date_submitted: string;
-    closing_date: string;
-    reason: string;
-    process: string;
-}
+
 
 
 export default function NominationTables({ data }: { data: Nomination[] }) {
@@ -71,14 +67,7 @@ export default function NominationTables({ data }: { data: Nomination[] }) {
         { title: 'Reason', dataIndex: 'reason', },
         { title: 'Process', dataIndex: 'process', render: (value: string) => <span className="capitalize">{value.split('_').join(' ')}</span> },
         {
-            title: '', dataIndex: 'nomination_id', width: '10rem', render: (value: string, record: Nomination) => <div className="flex gap-6">
-                <button onClick={() => onDeleteClick(value)}>
-                    <Delete />
-                </button>
-                <button onClick={() => onEditClick(record)}>
-                    <Edit />
-                </button>
-            </div>
+            title: '', dataIndex: 'nomination_id', width: '10rem', render: (value: string, record: Nomination) => <NominationActionButtons onEditClick={() => onEditClick(record)} onDeleteClick={() => onDeleteClick(value)} record={record} active={active} />
         },
 
     ]
@@ -86,14 +75,21 @@ export default function NominationTables({ data }: { data: Nomination[] }) {
 
     const buttonClasses = classNames(anonymousPro.className, 'capitalize', ' text-md', '!border-0');
 
+
+
     return <Container className='md:max-w-full md:w-[76rem] px-0 !bg-transparent'>
-        <div className={"space-x-3 mb-4"}>
+        <h1 className="text-3xl font-bold uppercase mb-6">Your nominations</h1>
+        {data.length === 0 ? <TableEmptyState /> : <div className={"space-x-3 mb-4"}>
             <Button width="small" className={buttonClasses} variant={active === 'closed' ? 'green' : "secondary"} onClick={() => setActive('current')}>Current</Button>
             <Button width="small" className={buttonClasses} variant={active === 'current' ? 'green' : 'secondary'} onClick={() => setActive('closed')}>Closed</Button>
-        </div>
+        </div>}
         <Table columns={columns} dataSource={filteredList} />
-
         {showDeleteModal.nomination_id && <ConfirmDeleteNominationModal isOpen={showDeleteModal.visible} nomination_id={showDeleteModal.nomination_id} onClose={() => setShowDeleteModal({ visible: false, nomination_id: null })} />}
+        <TableMobile
+            data={filteredList}
+            active={active}
+            renderActionButtons={(record: Nomination) => <NominationActionButtons record={record} active={active} onEditClick={() => onEditClick(record)} onDeleteClick={() => onDeleteClick(record.nomination_id)} />}
+        />
     </Container>
 
 }
