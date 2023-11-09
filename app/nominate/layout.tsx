@@ -18,7 +18,7 @@ export default function Layout({
 }) {
 
     return (
-        <main className="flex md: px-8 py-20">
+        <main className=" px-8 py-20">
             <Container>
                 {children}
             </Container>

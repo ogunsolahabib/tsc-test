@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "@/app/config";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 
 export async function GET (req: Request, query: any) {

@@ -19,7 +19,7 @@ export default function Success() {
         <div className='w-full h-[320px] relative'>
             <Image src='/tsc-success-banner.png' fill className='object-cover' alt='Man checking board' />
         </div>
-        <div className="p-5">
+        <div className="py-10">
 
             <div className='text-center space-y-3 mx-auto'>
                 <h1 className="text-3xl font-bold">NOMINATION SUBMITTED</h1>
