@@ -39,7 +39,8 @@ const authToken = cookieStore.get('tsc-authToken')?.value;
     
 
     const updatedData = data.data.map((nomination: any) => {
-        const {first_name, last_name} = nomineesObject[nomination.nominee_id] || {first_name: 'N/A', last_name: 'N/A'}
+        const {first_name, last_name} = nomineesObject[nomination.nominee_id] || {first_name: 'N/A', last_name: 'N/A'};
+        nomination.first_name = first_name;
         nomination.name= first_name + ' ' + last_name
         return nomination
     })

@@ -4,20 +4,25 @@ import Image from "next/image"
 import { anonymousPro } from "@/app/fonts"
 import TextArea from "../shared/TextArea"
 import Button from "../shared/Button"
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import ProgressUpdater from "./ProgressUpdater";
 import useFormData from "@/app/hooks/useFormData";
 import routePaths from "@/app/utils/routePaths";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 
 
 const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> = ({ setProgress }) => {
     const router = useRouter();
 
-    const { formData, updateFormData } = useFormData();
+    const { formData, updateFormData, resetFormData } = useFormData();
 
     const [firstName, setFirstName] = useState("");
+
+    const searchParams = useSearchParams();
+
+    const nomination_id = searchParams.get('nomination_id');
+
 
     useEffect(() => {
         setFirstName(formData.first_name);
@@ -30,9 +35,31 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
             setValue('reason', formData.reason);
         }
     }, [])
-    const onFormSubit = (data: any) => {
-        console.log(data);
+
+    const handleSave = async (data: FieldValues) => {
+        const res = await fetch(`/api/nominations/${nomination_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+            resetFormData();
+            router.push(routePaths.nominations);
+        }
+
+    }
+
+    const onFormSubit = (data: FieldValues) => {
         data.first_name = formData.first_name;
+
+        if (nomination_id) {
+            return handleSave(data);
+            router.push(routePaths.nominations);
+
+        }
         updateFormData(data);
         router.push(routePaths.rating);
     }
@@ -49,13 +76,15 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
             </div>
             <form className="space-y-3" onSubmit={handleSubmit(onFormSubit)}>
                 <TextArea rows={6} required label={"Reasoning"} {...register('reason')} autoFocus />
-                <div className="flex justify-between">
+                {nomination_id ? <div className="flex w-fit mt-8 mx-auto">
+                    <Button width='large' variant="primary" type="submit">Save</Button>
+                </div> : <div className="flex justify-between">
                     <a href={routePaths.start}>
                         <Button width='small' variant="secondary" type="button">back</Button>
                     </a>
                     <Button type="submit"
                         width='medium' variant="primary">next</Button>
-                </div>
+                </div>}
             </form>
         </div>
     </ >

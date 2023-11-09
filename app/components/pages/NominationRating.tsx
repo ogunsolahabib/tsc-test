@@ -12,10 +12,9 @@ import { useEffect, useState } from "react"
 import RatingProgress from "./RatingProgress"
 import Button from "../shared/Button"
 import ProgressUpdater from "./ProgressUpdater"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import routePaths from "@/app/utils/routePaths"
 import useFormData from "@/app/hooks/useFormData"
-import { API_BASE_URL } from "@/app/config"
 import useFetchRequest from "@/app/hooks/useFetchRequest"
 
 
@@ -32,9 +31,14 @@ const calculateRatingLevel = (index: number) => {
 
 const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) => {
     const [ratingValue, setRatingValue] = useState<string | undefined>(undefined);
+
     const router = useRouter();
 
-    const { formData, updateFormData } = useFormData();
+    const searchParams = useSearchParams();
+
+    const nomination_id = searchParams.get('nomination_id');
+
+    const { formData, updateFormData, resetFormData } = useFormData();
 
     useEffect(() => {
         if (formData.rating) {
@@ -46,9 +50,24 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
 
     const ratingLevel = calculateRatingLevel(selectedIndex);
 
-    const { POST, loading } = useFetchRequest('nomination')
+    const { loading } = useFetchRequest('nomination');
 
-    const onNextClick = () => {
+    const onNextClick = async () => {
+
+        const res = await fetch(`/api/nominations/${nomination_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ process: ratingValue }),
+        });
+
+        if (res.ok) {
+            resetFormData();
+            return router.push(routePaths.nominations);
+
+        }
+
         updateFormData({ rating: ratingValue });
         router.push(routePaths.overview);
     }
@@ -84,13 +103,15 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
                     ))}
                 </div>
             </div>
-            <div className="flex justify-between gap-4">
+            {nomination_id ? <div className="flex w-fit mt-8 mx-auto">
+                <Button width='large' variant="primary" loading={loading} type="button" onClick={onNextClick}>Save</Button>
+            </div> : <div className="flex justify-between gap-4">
                 <a href={routePaths.reason}>
 
                     <Button width='small' variant="secondary">back</Button>
                 </a>
                 <Button width='medium' variant="primary" loading={loading} onClick={onNextClick}>next</Button>
-            </div>
+            </div>}
         </div >
     </>
 

@@ -8,9 +8,13 @@ const ConfirmDeleteNominationModal: React.FC<{ isOpen: boolean, onClose: () => v
         const res = await fetch(`/api/nominations/${nomination_id}`, {
             method: 'DELETE'
         })
-        if (res.ok) {
-            onClose();
+
+        if (!res.ok) {
+            return
         }
+
+        onClose();
+
 
     }
 

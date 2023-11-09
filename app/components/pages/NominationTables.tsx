@@ -11,10 +11,13 @@ import Delete from "@/app/icons/Delete";
 import Edit from "@/app/icons/Edit";
 import ConfirmDeleteNominationModal from "./ConfirmDeleteNominationModal";
 import useFormData from "@/app/hooks/useFormData";
+import { useRouter } from "next/navigation";
+import routePaths from "@/app/utils/routePaths";
 
 interface Nomination {
     nomination_id: string;
     nominee_id?: string;
+    first_name?: string;
     date_submitted: string;
     closing_date: string;
     reason: string;
@@ -29,7 +32,9 @@ export default function NominationTables({ data }: { data: Nomination[] }) {
 
     const [showDeleteModal, setShowDeleteModal] = useState<{ visible: boolean, nomination_id: string | null }>({ visible: false, nomination_id: null });
 
-    const { setFormData } = useFormData()
+    const { setFormData } = useFormData();
+
+    const router = useRouter();
 
     useEffect(() => {
         const filtered = data.filter((nomination) => {
@@ -49,10 +54,13 @@ export default function NominationTables({ data }: { data: Nomination[] }) {
 
     const onEditClick = (record: Nomination) => {
         setFormData({
+            first_name: record.first_name,
             nominee_id: record.nominee_id,
             reason: record.reason,
             rating: record.process
-        })
+        });
+
+        router.push(routePaths.edit + '/' + record.nomination_id);
     }
 
 
