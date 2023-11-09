@@ -40,7 +40,7 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
 
     const ratingLevel = calculateRatingLevel(selectedIndex);
 
-    const { POST } = useFetchRequest('nomination')
+    const { POST, loading } = useFetchRequest('nomination')
 
     const onNextClick = () => {
         const data = {
@@ -49,10 +49,8 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
             process: ratingValue
         }
         POST(data).then((res) => {
-            // router.push(routePaths.success);
-            console.log(res);
-
-            // resetFormData();
+            resetFormData();
+            router.push(routePaths.success);
 
         })
     }
@@ -93,7 +91,7 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
 
                     <Button width='small' variant="secondary">back</Button>
                 </a>
-                <Button width='medium' variant="primary" onClick={onNextClick}>next</Button>
+                <Button width='medium' variant="primary" loading={loading} onClick={onNextClick}>next</Button>
             </div>
         </div >
     </>

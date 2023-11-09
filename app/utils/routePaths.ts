@@ -5,7 +5,7 @@ const routePaths = {
     overview: 'nominate/overview',
     reason: '/nominate/reason',
     rating: '/nominate/rating',
-    success: '/success',
+    success: '/nominate/success',
 }
 
 export default routePaths;
