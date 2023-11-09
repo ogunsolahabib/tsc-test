@@ -13,14 +13,14 @@ export default function Page() {
                 <h1 className="text-3xl font-bold text-center mb-4">Login</h1>
                 <div className="space-y-3 w-full">
                     <div>
-                        <InputLabel htmlFor="email">Email</InputLabel>
-                        <Input name='email' type='email' id='email' />
+                        <InputLabel required htmlFor="email">Email</InputLabel>
+                        <Input name='email' type='email' id='email' required />
 
                     </div>
                     <div>
 
                         <InputLabel htmlFor="password">Password</InputLabel>
-                        <Input name='password' type="password" id="password" />
+                        <Input name='password' type="password" id="password" required />
 
                     </div>
                     <LoginButton />
