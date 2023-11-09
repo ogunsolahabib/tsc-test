@@ -2,7 +2,6 @@
 
 import { Children, cloneElement, useEffect, useState } from "react";
 import ProgressStatic from "./Progress";
-import useProgress from "@/app/hooks/useProgress";
 import useLocalStorage from "@/app/hooks/useLocalStorage";
 import dynamic from "next/dynamic";
 

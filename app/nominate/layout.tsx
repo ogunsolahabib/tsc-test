@@ -1,10 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
 import Container from "../components/shared/Container"
-import useProgress from "../hooks/useProgress";
-import { usePathname } from 'next/navigation'
-import useLocalStorage from "../hooks/useLocalStorage";
 import dynamic from "next/dynamic";
 dynamic
 
