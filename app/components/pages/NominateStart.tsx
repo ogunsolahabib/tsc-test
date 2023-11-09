@@ -16,19 +16,25 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { register, control, handleSubmit, watch } = useForm();
+    const { register, control, handleSubmit, watch, setValue } = useForm();
 
     const [isNextActive, setIsNextActive] = useState(false);
 
     const router = useRouter();
 
-    const { updateFormData } = useFormData()
+    const { updateFormData, formData } = useFormData()
 
     const selectedCube = watch('nominee_id');
 
     useEffect(() => {
         setIsNextActive(!!selectedCube);
     }, [selectedCube]);
+
+    useEffect(() => {
+        if (formData.nominee_id) {
+            setValue('nominee_id', formData.nominee_id);
+        }
+    }, [])
 
 
 

@@ -23,7 +23,13 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
         setFirstName(formData.first_name);
     }, [formData.first_name]);
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
+
+    useEffect(() => {
+        if (formData.reason) {
+            setValue('reason', formData.reason);
+        }
+    }, [])
     const onFormSubit = (data: any) => {
         console.log(data);
         data.first_name = formData.first_name;
@@ -42,7 +48,7 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
                 <p className={anonymousPro.className + ' max-w-[600px] '}>Please let us know why you think this cube deserves the ‘cube of the month’ title 🏆⭐</p>
             </div>
             <form className="space-y-3" onSubmit={handleSubmit(onFormSubit)}>
-                <TextArea rows={6} required label={"Reasoning"} {...register('reason')} />
+                <TextArea rows={6} required label={"Reasoning"} {...register('reason')} autoFocus />
                 <div className="flex justify-between">
                     <a href={routePaths.start}>
                         <Button width='small' variant="secondary" type="button">back</Button>

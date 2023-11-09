@@ -20,8 +20,8 @@ const Button: React.FC<ButtonProps & React.HTMLProps<HTMLButtonElement>> = ({ va
             'min-w-[12rem] md:min-w-[18rem]': width === "large",
             'min-w-[8rem] min-w-[12rem]': width === "medium",
             'md:min-w-[8rem]': width === "small",
-            'w-full': !width || className?.includes('block'),
-            'w-fit': !width || className?.includes('inline'),
+            'w-full': !width || className?.includes(' block'),
+            'w-fit': !width || className?.includes(' inline'),
         }, className
     )
 

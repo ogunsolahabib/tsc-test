@@ -1,10 +1,20 @@
+'use client';
+
 import Image from "next/image";
 import Button from "../shared/Button";
 import Container from "../shared/Container";
 import { anonymousPro } from "@/app/fonts";
 import routePaths from "@/app/utils/routePaths";
+import useFormData from "@/app/hooks/useFormData";
+import { useEffect } from "react";
 
 export default function Success() {
+    const { resetFormData } = useFormData();
+
+    useEffect(() => {
+        resetFormData();
+    }, []);
+
     return <Container className='px-0'>
         <div className='w-full h-[320px] relative'>
             <Image src='/tsc-success-banner.png' fill className='object-cover' alt='Man checking board' />

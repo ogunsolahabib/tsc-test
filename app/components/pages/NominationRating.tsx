@@ -8,7 +8,7 @@ import VeryFiar from "@/app/icons/VeryFair"
 import VeryUnfair from "@/app/icons/VeryUnfair"
 import classNames from "classnames"
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import RatingProgress from "./RatingProgress"
 import Button from "../shared/Button"
 import ProgressUpdater from "./ProgressUpdater"
@@ -34,7 +34,13 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
     const [ratingValue, setRatingValue] = useState<string | undefined>(undefined);
     const router = useRouter();
 
-    const { resetFormData, formData } = useFormData()
+    const { formData, updateFormData } = useFormData();
+
+    useEffect(() => {
+        if (formData.rating) {
+            setRatingValue(formData.rating);
+        }
+    }, [])
 
     const selectedIndex = ratingsList.findIndex((rating) => rating.value === ratingValue);
 
@@ -43,16 +49,8 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
     const { POST, loading } = useFetchRequest('nomination')
 
     const onNextClick = () => {
-        const data = {
-            nominee_id: formData.nominee_id,
-            reason: formData.reason,
-            process: ratingValue
-        }
-        POST(data).then((res) => {
-            resetFormData();
-            router.push(routePaths.success);
-
-        })
+        updateFormData({ rating: ratingValue });
+        router.push(routePaths.overview);
     }
 
 

@@ -1,10 +1,11 @@
 import { API_BASE_URL } from "@/app/config"
 import { cookies } from "next/headers";
 
+
 export async function GET (){
     const cookieStore = cookies();
 
-    const authToken = cookieStore.get('tsc-authToken')?.value;
+const authToken = cookieStore.get('tsc-authToken')?.value;
 
     const res= await fetch(`${API_BASE_URL}/nomination`, {
         method: 'GET',
@@ -44,5 +45,28 @@ export async function GET (){
     })
 
     return Response.json(updatedData);
+}
+
+export async function POST (req: Request,) {
+    const cookieStore = cookies();
+
+    const authToken = cookieStore.get('tsc-authToken')?.value;
+    const body =await req.json();
+
+    console.log(body, 'body');
+
+    const res= await fetch(`${API_BASE_URL}/nomination`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify(body)
+    });
+
+    const data = await res.json();
+
+    return Response.json(data);
+
 }
 
