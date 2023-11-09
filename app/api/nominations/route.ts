@@ -34,9 +34,7 @@ const authToken = cookieStore.get('tsc-authToken')?.value;
     const nomineesObject= await nominees.data.reduce((acc: any, nominee: any) => {
         acc[nominee.nominee_id] = nominee
         return acc
-    })
-
-    
+    });
 
     const updatedData = data.data.map((nomination: any) => {
         const {first_name, last_name} = nomineesObject[nomination.nominee_id] || {first_name: 'N/A', last_name: 'N/A'};
@@ -53,8 +51,6 @@ export async function POST (req: Request,) {
 
     const authToken = cookieStore.get('tsc-authToken')?.value;
     const body =await req.json();
-
-    console.log(body, 'body');
 
     const res= await fetch(`${API_BASE_URL}/nomination`, {
         method: 'POST',

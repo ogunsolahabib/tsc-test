@@ -1,8 +1,7 @@
 export default function isNominationCurrent(closing_date: string) {
     
    const todayString = formatToday();
-   const closingDateString = new Date(closing_date).toString();
-console.log({todayString, closingDateString});
+   
     return new Date(closing_date) > new Date() || closing_date == todayString;
 }
 

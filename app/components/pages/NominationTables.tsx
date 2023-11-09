@@ -71,7 +71,7 @@ export default function NominationTables({ data }: { data: Nomination[] }) {
         { title: 'Reason', dataIndex: 'reason', },
         { title: 'Process', dataIndex: 'process', render: (value: string) => <span className="capitalize">{value.split('_').join(' ')}</span> },
         {
-            title: '', dataIndex: 'nomination_id', width: '10rem', render: (value: string, record: Nomination) => <div className="flex space-x-2">
+            title: '', dataIndex: 'nomination_id', width: '10rem', render: (value: string, record: Nomination) => <div className="flex gap-6">
                 <button onClick={() => onDeleteClick(value)}>
                     <Delete />
                 </button>

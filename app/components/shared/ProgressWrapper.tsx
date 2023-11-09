@@ -15,7 +15,6 @@ const ProgresssWrapper = ({ children }: { children: React.ReactNode, currentProg
 
     useEffect(() => {
         setProgressLocal(progress);
-        console.log('progress in layout', progress);
     }, [progress]);
 
     return <>
