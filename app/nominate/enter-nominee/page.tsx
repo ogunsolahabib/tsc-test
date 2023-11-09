@@ -7,6 +7,7 @@ export default async function Page() {
     const cookieStore = cookies();
 
     const authToken = cookieStore.get('tsc-authToken')?.value;
+
     const res = await fetch(`${API_BASE_URL}/nominee`, {
         method: 'GET',
         headers: {
@@ -14,6 +15,7 @@ export default async function Page() {
             'authorization': `Bearer ${authToken}`
         },
     }).then(res => res.json());
+
     const allNominees = await res.data;
 
 

@@ -11,7 +11,7 @@ interface ButtonProps {
 
 }
 
-const Button: React.FC<ButtonProps & React.HTMLProps<HTMLButtonElement>> = ({ variant, children, className, type, loading, width = 'large', ...props }) => {
+const Button: React.FC<ButtonProps & React.HTMLProps<HTMLButtonElement>> = ({ variant, children, className, loading, width = 'large', ...props }) => {
     const classes = classNames('px-4 py-2  font-semibold text-sm transition-background duration-300 uppercase disabled:cursor-not-allowed',
         {
             "bg-black text-white hover:bg-white hover:text-black hover:border-2 hover:border-black disabled:bg-tsc-mid-grey disabled:hover:border-0 disabled:hover:text-white": variant === "primary",
