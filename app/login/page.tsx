@@ -50,7 +50,7 @@ async function myAction(formData: FormData) {
 export default function Page() {
 
 
-    return <main className="flex min-h-[600px] px-8 py-20">
+    return <main className="flex px-8 py-20">
         <Container className="my-auto py-10 px-8">
             <form method="POST" className="flex flex-col md:w-[26rem] m-auto" action={myAction}>
                 <h1 className="text-3xl font-bold text-center mb-4">Login</h1>
