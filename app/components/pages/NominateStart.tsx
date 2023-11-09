@@ -2,22 +2,25 @@
 
 import Image from "next/image";
 import Select from "../shared/Select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../shared/Button";
 import ConfirmCloseModal from "./ConfirmCloseModal";
 import { anonymousPro } from "@/app/fonts";
 import { Controller, useForm } from "react-hook-form";
 import ProgressUpdater from "./ProgressUpdater";
 
-export default function NominateStart({ setProgress, allNominees }: { setProgress: (progress: number, allNominees?: any[]) => void }) {
-    const [value, setValue] = useState('');
+export default function NominateStart({ setProgress, allNominees }: { setProgress: (progress: number) => void, allNominees: any[] }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { register, control, handleSubmit } = useForm();
+    const { register, control, handleSubmit, watch } = useForm();
+    const [isNextActive, setIsNextActive] = useState(false);
 
+    const selectedCube = watch('cube');
 
-
+    useEffect(() => {
+        setIsNextActive(!!selectedCube);
+    }, [selectedCube]);
 
     return <>
         <ProgressUpdater setProgress={setProgress} value={1} />
@@ -33,18 +36,12 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
             <form onSubmit={handleSubmit((data) => {
                 console.log(data)
             })}>
-
-
                 <Controller name="cube" control={control} render={({ field }) => (
-                    <Select required name='cube' label="Cube's name" value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        field={field}
-                        options={allNominees.map((nominee: any) => ({
-                            label: nominee.first_name + ' ' + nominee.last_name,
-                            value: nominee.nominee_id
-                        }))}
+                    <Select required
+                        label="Cube's name"
+                        {...field}
+                        options={allNominees.map((nominee) => ({ label: `${nominee.first_name} ${nominee.last_name}`, value: nominee.nominee_id }))}
                         register={register}
-
                     />
                 )}
                 />
@@ -52,7 +49,7 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
 
                 <div className="flex justify-between mt-6">
                     <Button width='small' variant="secondary" onClick={() => setIsModalOpen(true)}>back</Button>
-                    <Button width='medium' variant="primary" disabled={!value} type="submit">next</Button>
+                    <Button width='medium' variant="primary" disabled={!isNextActive} type="submit">next</Button>
                 </div>
             </form>
         </div>
