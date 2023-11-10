@@ -1,17 +1,15 @@
 import { API_BASE_URL } from "@/app/config"
+import getToken from "@/app/utils/getToken";
 import { cookies } from "next/headers";
 
 
 export async function GET (){
-    const cookieStore = cookies();
-
-const authToken = cookieStore.get('tsc-authToken')?.value;
 
     const res= await fetch(`${API_BASE_URL}/nomination`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `Bearer ${authToken}`
+            'authorization': `Bearer ${getToken()}`
         },
     });
 
@@ -19,7 +17,7 @@ const authToken = cookieStore.get('tsc-authToken')?.value;
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `Bearer ${authToken}`
+            'authorization': `Bearer ${getToken()}`
         }
     });
 
@@ -47,16 +45,14 @@ const authToken = cookieStore.get('tsc-authToken')?.value;
 }
 
 export async function POST (req: Request,) {
-    const cookieStore = cookies();
 
-    const authToken = cookieStore.get('tsc-authToken')?.value;
     const body =await req.json();
 
     const res= await fetch(`${API_BASE_URL}/nomination`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `Bearer ${authToken}`
+            'authorization': `Bearer ${getToken()}`
         },
         body: JSON.stringify(body)
     });

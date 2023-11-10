@@ -1,13 +1,13 @@
 import Plus from "@/app/icons/Plus";
 import LogoSvg from "./LogoSvg";
 import Inbox from "@/app/icons/Inbox";
-import { cookies } from "next/headers";
 import routePaths from "@/app/utils/routePaths";
+import getToken from "@/app/utils/getToken";
+import Link from "next/link";
 
 
 export default async function Header() {
-    const cookieStore = cookies();
-    const authToken = cookieStore.get('tsc-authToken')?.value;
+
 
     const nominationsRes = await import('@/app/api/nominations/route');
     const nominationsData = await (await nominationsRes.GET()).json();
@@ -16,7 +16,7 @@ export default async function Header() {
         <a href="/">
             <LogoSvg />
         </a>
-        <div className="flex gap-5">
+        {getToken() ? <div className="flex gap-5">
             <a href={routePaths.start}>
                 <Plus />
             </a>
@@ -25,9 +25,8 @@ export default async function Header() {
                 <span className="md:hidden">
                     <Inbox />
                 </span>
-
             </a>
-        </div>
+        </div> : <Link href={routePaths.login}>Login</Link>}
     </header>
 }
 

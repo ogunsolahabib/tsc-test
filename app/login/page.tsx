@@ -3,13 +3,12 @@ import InputLabel from "../components/shared/InputLabel";
 import Input from "../components/shared/Input";
 import LoginButton from "../components/pages/LoginButton";
 import { loginUser } from "../actions";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import getToken from "../utils/getToken";
 
 export default function Page() {
-    const cookieStore = cookies();
 
-    if (cookieStore.get('tsc-authToken')) {
+    if (!!getToken()) {
         redirect('/')
     }
 

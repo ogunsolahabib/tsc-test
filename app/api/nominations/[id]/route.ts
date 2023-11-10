@@ -1,15 +1,15 @@
 import { API_BASE_URL } from "@/app/config";
+import getToken from "@/app/utils/getToken";
 import { cookies } from "next/headers";
 
 
 export async function GET (req: Request, query: any) {
-    const cookieStore = cookies();
-const authToken = cookieStore.get('tsc-authToken')?.value;
+   
     const res = await fetch(`${API_BASE_URL}/nomination/${query.params.id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `Bearer ${authToken}`
+            'authorization': `Bearer ${getToken()}`
         }
     });
 
@@ -19,14 +19,13 @@ const authToken = cookieStore.get('tsc-authToken')?.value;
 }
 
 export async function DELETE (req: Request, {params}: any) {
-    const cookieStore = cookies();
-const authToken = cookieStore.get('tsc-authToken')?.value;
+   
 
     const res = await fetch(`${API_BASE_URL}/nomination/${params.id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `Bearer ${authToken}`
+            'authorization': `Bearer ${getToken()}`
         }
     });
 
@@ -36,15 +35,14 @@ const authToken = cookieStore.get('tsc-authToken')?.value;
 }
 
 export async function PUT (req: Request, {params}: any) {
-    const cookieStore = cookies();
-const authToken = cookieStore.get('tsc-authToken')?.value;
+   
 
 const body = await req.json();
     const res= await fetch(`${API_BASE_URL}/nomination/${params.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `Bearer ${authToken}`
+            'authorization': `Bearer ${getToken()}`
         },
         body: JSON.stringify(body)
     });
