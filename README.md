@@ -33,6 +33,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Things to implement in extra time?
 - Image optimization (exported assets are a bit large)
+- Error handling!
 - Radio Group component for mobile
 - Make code DRYer than it currently is
 - More animations
