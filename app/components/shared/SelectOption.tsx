@@ -1,3 +1,4 @@
+import Link from "next/link"
 
 interface SelectOptionProps {
     value: string,
@@ -9,7 +10,7 @@ interface SelectOptionProps {
 
 const SelectOption: React.FC<SelectOptionProps> = ({ value, label, children, onSelect }) => {
     return <li onMouseDown={() => onSelect({ value, label })}>
-        <a href="#" className="block p-3">{label || children}</a>
+        <Link href="#" className="block p-3">{label || children}</Link>
     </li>
 }
 

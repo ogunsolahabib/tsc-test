@@ -10,6 +10,7 @@ import useFormData from "@/app/hooks/useFormData";
 import routePaths from "@/app/utils/routePaths";
 import { FieldValues, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 
 const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> = ({ setProgress }) => {
@@ -89,9 +90,9 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
                 {nomination_id ? <div className="flex w-fit mt-8 mx-auto">
                     <Button width='large' variant="primary" type="submit">Save</Button>
                 </div> : <div className="flex justify-between">
-                    <a href={routePaths.start}>
+                    <Link href={routePaths.start}>
                         <Button width='small' variant="secondary" type="button">back</Button>
-                    </a>
+                    </Link>
                     <Button type="submit"
                         width='large' variant="primary" disabled={!isNextActive} >next</Button>
                 </div>}

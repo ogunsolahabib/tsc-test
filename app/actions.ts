@@ -2,7 +2,6 @@
 
 import { cookies } from "next/headers";
 import { API_BASE_URL } from "./config";
-import { redirect } from "next/navigation";
 
 export async function loginUser(formData: FormData) {
     const cookieStore = cookies();

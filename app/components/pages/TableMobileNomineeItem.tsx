@@ -8,7 +8,7 @@ export default function TableMobileNomineeItem({ record, renderActionButtons }: 
             </h4>
             <p className={`${anonymousPro.className} truncate`}>{record.reason}</p>
         </div>
-        <div className="w-1/5 px-4 ml-auto">
+        <div className="w-fit px-4 ml-auto">
             {renderActionButtons(record)}
         </div>
     </div>

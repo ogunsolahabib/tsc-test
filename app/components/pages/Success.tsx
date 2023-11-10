@@ -7,6 +7,7 @@ import { anonymousPro } from "@/app/fonts";
 import routePaths from "@/app/utils/routePaths";
 import useFormData from "@/app/hooks/useFormData";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Success() {
     const { resetFormData } = useFormData();
@@ -28,12 +29,12 @@ export default function Success() {
             </div>
             <div className="flex justify-center gap-2 mx-auto mt-10">
 
-                <a href={routePaths.nominations} className='w-fit'>
+                <Link href={routePaths.nominations} className='w-fit'>
                     <Button variant='secondary'>view nominations</Button>
-                </a>
-                <a href={routePaths.start} className='w-fit'>
+                </Link>
+                <Link href={routePaths.start} className='w-fit'>
                     <Button variant='secondary'>create new nomination</Button>
-                </a>
+                </Link>
             </div>
         </div>
 

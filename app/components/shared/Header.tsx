@@ -13,19 +13,19 @@ export default async function Header() {
     const nominationsData = await (await nominationsRes.GET()).json();
 
     return <header className="w-full p-5 flex items-center justify-between bg-black text-white sticky top-0 z-50">
-        <a href="/">
+        <Link href="/">
             <LogoSvg />
-        </a>
+        </Link>
         {getToken() ? <div className="flex gap-5">
-            <a href={routePaths.start}>
+            <Link href={routePaths.start}>
                 <Plus />
-            </a>
+            </Link>
 
-            <a href={routePaths.nominations}><span className="hidden md:block">Your Nominations ({nominationsData.length})</span>
+            <Link href={routePaths.nominations}><span className="hidden md:block">Your Nominations ({nominationsData.length})</span>
                 <span className="md:hidden">
                     <Inbox />
                 </span>
-            </a>
+            </Link>
         </div> : <Link href={routePaths.login}>Login</Link>}
     </header>
 }
