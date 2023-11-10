@@ -20,6 +20,13 @@ const Modal: React.FC<ModalProps & React.HTMLProps<HTMLDivElement>> = ({ childre
                 {children}
             </div>
         </div>
+        <style global jsx>
+            {`
+               body {
+                 overflow-y: ${isOpen ? 'hidden' : 'auto'};  
+               }
+            `}
+        </style>
     </div>
 
 }

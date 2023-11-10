@@ -2,7 +2,6 @@
 
 import { Children, cloneElement, useEffect, useState } from "react";
 import ProgressStatic from "./Progress";
-import useProgress from "@/app/hooks/useProgress";
 import useLocalStorage from "@/app/hooks/useLocalStorage";
 import dynamic from "next/dynamic";
 
@@ -16,11 +15,10 @@ const ProgresssWrapper = ({ children }: { children: React.ReactNode, currentProg
 
     useEffect(() => {
         setProgressLocal(progress);
-        console.log('progress in layout', progress);
     }, [progress]);
 
     return <>
-        <div className="px-5 mt-5">
+        <div className="px-5 pt-5">
             <Progress value={progressLocal} />
         </div>
         {Children.map(children, (child: any) => {

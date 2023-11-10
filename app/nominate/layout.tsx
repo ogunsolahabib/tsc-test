@@ -1,10 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
 import Container from "../components/shared/Container"
-import useProgress from "../hooks/useProgress";
-import { usePathname } from 'next/navigation'
-import useLocalStorage from "../hooks/useLocalStorage";
 import dynamic from "next/dynamic";
 dynamic
 
@@ -18,7 +14,7 @@ export default function Layout({
 }) {
 
     return (
-        <main className="flex md: px-8 py-20">
+        <main className="md:px-8 md:py-12">
             <Container>
                 {children}
             </Container>

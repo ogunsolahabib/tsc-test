@@ -1,8 +1,5 @@
 'use client'
 
-import { anonymousPro } from "@/app/fonts"
-import Modal from "../shared/Modal"
-import Button from "../shared/Button"
 import React from "react"
 import ConfirmModal from "./ConfirmModal"
 

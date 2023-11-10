@@ -16,6 +16,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import routePaths from "@/app/utils/routePaths"
 import useFormData from "@/app/hooks/useFormData"
 import useFetchRequest from "@/app/hooks/useFetchRequest"
+import Link from "next/link"
 
 
 const ratingsList = [{ value: 'very_unfair', label: 'Very unfair', icon: <VeryUnfair /> },
@@ -105,12 +106,11 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
             </div>
             {nomination_id ? <div className="flex w-fit mt-8 mx-auto">
                 <Button width='large' variant="primary" loading={loading} type="button" onClick={onNextClick}>Save</Button>
-            </div> : <div className="flex justify-between gap-4">
-                <a href={routePaths.reason}>
-
-                    <Button width='small' variant="secondary">back</Button>
-                </a>
-                <Button width='medium' variant="primary" loading={loading} onClick={onNextClick}>next</Button>
+            </div> : <div className="flex md:justify-between gap-2">
+                <Link href={routePaths.reason} className='basis-1/3 max-w-[12rem]'>
+                    <Button className='w-full' width='fit' variant="secondary">back</Button>
+                </Link>
+                <Button className="basis-2/3 max-w-[18rem]" disabled={!ratingValue} type="submit" width='fit' variant="primary" loading={loading} onClick={onNextClick}>next</Button>
             </div>}
         </div >
     </>

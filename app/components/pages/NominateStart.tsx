@@ -71,10 +71,13 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
 
     return <>
         <ProgressUpdater setProgress={setProgress} value={1} />
-        <div className="p-5 space-y-10">
+        <div className="py-5 md:px-5">
             <div className='w-full h-[180px] relative'>
                 <Image src='/tsc-select-nominee-banner.png' fill className='object-cover' alt='Man checking board' />
             </div>
+        </div>
+        <div className="p-5 space-y-10">
+
             <div className='space-y-3'>
                 <h1 className="text-2xl md:text-3xl font-semibold uppercase">I&apos;d like to nominate...</h1>
                 <p className={anonymousPro.className}>Please select a cube who you feel has done something honourable this month or just all round has a great work ethic.</p>
@@ -94,7 +97,7 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
                     <Button width='large' variant="primary" type="submit">Save</Button>
                 </div> : <div className="flex justify-between mt-6">
                     <Button width='small' variant="secondary" onClick={() => setIsModalOpen(true)}>back</Button>
-                    <Button width='medium' variant="primary" disabled={!isNextActive} type="submit">next</Button>
+                    <Button width='large' variant="primary" disabled={!isNextActive} type="submit">next</Button>
                 </div>}
             </form>
         </div>

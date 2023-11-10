@@ -60,7 +60,7 @@ export default function Overview({ setProgress, nomination_id }: { setProgress?:
             </OverviewItemCard>
         </div>
         <div className="flex mt-4">
-            <Button className="inline-block mx-auto" variant="primary" loading={submitLoading} onClick={onSubmitClick}>Submit</Button>
+            <Button className="w-full md:w-fit inline-block mx-auto" variant="primary" loading={submitLoading} onClick={onSubmitClick}>Submit</Button>
         </div>
     </div>
 }

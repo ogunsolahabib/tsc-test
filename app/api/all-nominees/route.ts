@@ -1,18 +1,16 @@
 import { API_BASE_URL } from "@/app/config"
-import { cookies } from "next/headers";
+import getToken from "@/app/utils/getToken";
+
 
 
 export async function GET (){
 
-const cookieStore = cookies();
-
-    const authToken = cookieStore.get('tsc-authToken')?.value;
 
     const res = await fetch(`${API_BASE_URL}/nominee`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `Bearer ${authToken}`
+            'authorization': `Bearer ${getToken()}`
         },
     }).then(res => res.json());
 

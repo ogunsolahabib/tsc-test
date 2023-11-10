@@ -4,8 +4,7 @@ export default async function Page() {
     const res = await import('@/app/api/nominations/route');
     const data = await (await res.GET()).json();
 
-    return <main className="md: px-8 py-20">
-        <h1 className="text-3xl font-bold uppercase mb-6">Your nominations</h1>
+    return <main className="px-8">
         <NominationTables data={data} />
     </main>
 }

@@ -12,7 +12,7 @@ interface TableProps {
 }
 
 export default function Table({ columns, dataSource }: TableProps) {
-    return <div className="relative mx-auto w-full">
+    return <div className="hidden md:block relative mx-auto w-full">
         <table className="w-full table-fixed text-sm text-left text-gray-500 max-w-full overflow-x-auto">
             <thead className="text-xs bg-tsc-light-grey uppercase text-black">
                 <tr>
