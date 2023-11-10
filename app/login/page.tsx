@@ -3,9 +3,15 @@ import InputLabel from "../components/shared/InputLabel";
 import Input from "../components/shared/Input";
 import LoginButton from "../components/pages/LoginButton";
 import { loginUser } from "../actions";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default function Page() {
+    const cookieStore = cookies();
 
+    if (cookieStore.get('tsc-authToken')) {
+        redirect('/')
+    }
 
     return <main className="flex px-8 py-10 md:py-20">
         <Container className="my-auto py-10 px-8">
