@@ -12,7 +12,7 @@ export default function Page() {
         redirect('/')
     }
 
-    return <main className="flex px-8 py-10 md:py-20">
+    return <main className="flex px-8 py-6 md:py-10">
         <Container className="my-auto py-10 px-8">
             <form method="POST" className="flex flex-col md:w-[26rem] m-auto" action={loginUser}>
                 <h1 className="text-3xl font-bold text-center mb-4">Login</h1>

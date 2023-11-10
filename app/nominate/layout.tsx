@@ -14,7 +14,7 @@ export default function Layout({
 }) {
 
     return (
-        <main className="md:px-8 md:py-20">
+        <main className="md:px-8 md:py-12">
             <Container>
                 {children}
             </Container>

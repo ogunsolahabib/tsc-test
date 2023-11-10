@@ -1,5 +1,7 @@
 import { API_BASE_URL } from "@/app/config"
 import getToken from "@/app/utils/getToken";
+import routePaths from "@/app/utils/routePaths";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 
@@ -58,6 +60,8 @@ export async function POST (req: Request,) {
     });
 
     const data = await res.json();
+
+    revalidatePath(routePaths.nominations);
 
     return Response.json(data);
 
