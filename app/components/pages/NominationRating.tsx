@@ -110,7 +110,7 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
 
                     <Button width='small' variant="secondary">back</Button>
                 </a>
-                <Button width='medium' variant="primary" loading={loading} onClick={onNextClick}>next</Button>
+                <Button width='large' variant="primary" loading={loading} onClick={onNextClick}>next</Button>
             </div>}
         </div >
     </>

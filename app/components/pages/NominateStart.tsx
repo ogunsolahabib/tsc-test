@@ -94,7 +94,7 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
                     <Button width='large' variant="primary" type="submit">Save</Button>
                 </div> : <div className="flex justify-between mt-6">
                     <Button width='small' variant="secondary" onClick={() => setIsModalOpen(true)}>back</Button>
-                    <Button width='medium' variant="primary" disabled={!isNextActive} type="submit">next</Button>
+                    <Button width='large' variant="primary" disabled={!isNextActive} type="submit">next</Button>
                 </div>}
             </form>
         </div>

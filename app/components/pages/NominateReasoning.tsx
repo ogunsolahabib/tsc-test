@@ -19,6 +19,8 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
 
     const [firstName, setFirstName] = useState("");
 
+    const [isNextActive, setIsNextActive] = useState(false);
+
     const searchParams = useSearchParams();
 
     const nomination_id = searchParams.get('nomination_id');
@@ -28,7 +30,15 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
         setFirstName(formData.first_name);
     }, [formData.first_name]);
 
-    const { register, handleSubmit, setValue } = useForm();
+    const { register, handleSubmit, setValue, watch } = useForm();
+
+    const reasonInputValue = watch('reason');
+
+    console.log(reasonInputValue)
+
+    useEffect(() => {
+        setIsNextActive(!!reasonInputValue);
+    }, [reasonInputValue]);
 
     useEffect(() => {
         if (formData.reason) {
@@ -83,7 +93,7 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
                         <Button width='small' variant="secondary" type="button">back</Button>
                     </a>
                     <Button type="submit"
-                        width='medium' variant="primary">next</Button>
+                        width='large' variant="primary" disabled={!isNextActive} >next</Button>
                 </div>}
             </form>
         </div>

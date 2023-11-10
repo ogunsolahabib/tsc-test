@@ -10,9 +10,13 @@ import { anonymousPro } from "@/app/fonts";
 
 
 const locations = [
-    { name: "Bournemouth", address: "123 Fake Street, Bournemouth" },
-    { name: "London", address: "123 Fake Street, London" },
-    { name: "New York", address: "123 Fake Street, New York" },
+    { name: "Bournemouth", address: "Telephone House Bournemouth, BH1 3NE" },
+    { name: "London", address: "51 Eastcheap London, EC3M 1JP" },
+    { name: "Washington", address: "80 M Street SE Washington, D.C 20003" },
+    {
+        name: 'Florida',
+        address: '7901 4th St N, STE 300 St. Petersburg FL 33702'
+    }
 ]
 
 export default function Footer() {

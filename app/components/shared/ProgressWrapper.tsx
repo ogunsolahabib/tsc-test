@@ -18,7 +18,7 @@ const ProgresssWrapper = ({ children }: { children: React.ReactNode, currentProg
     }, [progress]);
 
     return <>
-        <div className="px-5 mt-5">
+        <div className="px-5 pt-5">
             <Progress value={progressLocal} />
         </div>
         {Children.map(children, (child: any) => {
