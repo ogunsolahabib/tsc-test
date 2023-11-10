@@ -8,6 +8,7 @@ export default function LoadingPage() {
                 height="37"
                 fill="none"
                 viewBox="0 0 40 37"
+                className="animate-spin"
             >
                 <path
                     fill="#fff"

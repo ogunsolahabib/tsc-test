@@ -19,10 +19,11 @@ export default function TableMobile({ data, renderActionButtons }: { data: any[]
         </div>
 
         <style global jsx>
-            {`
-               body {
-                 overflow-y: hidden;  
-               }
+            {`@media (max-width: 768px) {
+                body {
+                    overflow-y: hidden;  
+                }
+            }
             `}
         </style>
 

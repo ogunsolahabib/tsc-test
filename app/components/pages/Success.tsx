@@ -22,18 +22,17 @@ export default function Success() {
         </div>
         <div className="py-10">
 
-            <div className='text-center space-y-3 mx-auto'>
-                <h1 className="text-3xl font-bold">NOMINATION SUBMITTED</h1>
+            <div className='text-center space-y-3 mx-auto px-5 md:px-10'>
+                <h1 className="text-3xl font-bold uppercase">Nomination submitted</h1>
                 <p className={anonymousPro.className + ' max-w-[600px] mx-auto'}>Thank you for taking the time to fill out this form! Why not nominate another cube?</p>
 
             </div>
-            <div className="flex justify-center gap-2 mx-auto mt-10">
-
-                <Link href={routePaths.nominations} className='w-fit'>
+            <div className="flex px-5 justify-center gap-2 mx-auto mt-10">
+                <Link href={routePaths.nominations} className='hidden md:block  w-fit'>
                     <Button variant='secondary'>view nominations</Button>
                 </Link>
-                <Link href={routePaths.start} className='w-fit'>
-                    <Button variant='secondary'>create new nomination</Button>
+                <Link href={routePaths.start} className='w-full md:w-fit '>
+                    <Button className='w-full' variant='secondary'>create new nomination</Button>
                 </Link>
             </div>
         </div>

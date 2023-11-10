@@ -7,8 +7,6 @@ import Container from "../shared/Container";
 import Table from "../shared/Table";
 import { anonymousPro } from "@/app/fonts";
 import isNominationCurrent from "@/app/utils/isNominationCurrent";
-import Delete from "@/app/icons/Delete";
-import Edit from "@/app/icons/Edit";
 import ConfirmDeleteNominationModal from "./ConfirmDeleteNominationModal";
 import useFormData from "@/app/hooks/useFormData";
 import { useRouter } from "next/navigation";
@@ -77,19 +75,26 @@ export default function NominationTables({ data }: { data: Nomination[] }) {
 
 
 
-    return <Container className='md:max-w-full md:w-[76rem] px-0 !bg-transparent'>
-        <h1 className="text-3xl font-bold uppercase mb-6">Your nominations</h1>
-        {data.length === 0 ? <TableEmptyState /> : <div className={"space-x-3 mb-4"}>
-            <Button width="small" className={buttonClasses} variant={active === 'closed' ? 'green' : "secondary"} onClick={() => setActive('current')}>Current</Button>
-            <Button width="small" className={buttonClasses} variant={active === 'current' ? 'green' : 'secondary'} onClick={() => setActive('closed')}>Closed</Button>
-        </div>}
-        <Table columns={columns} dataSource={filteredList} />
-        {showDeleteModal.nomination_id && <ConfirmDeleteNominationModal isOpen={showDeleteModal.visible} nomination_id={showDeleteModal.nomination_id} onClose={() => setShowDeleteModal({ visible: false, nomination_id: null })} />}
-        <TableMobile
-            data={filteredList}
-            active={active}
-            renderActionButtons={(record: Nomination) => <NominationActionButtons record={record} active={active} onEditClick={() => onEditClick(record)} onDeleteClick={() => onDeleteClick(record.nomination_id)} />}
-        />
-    </Container>
+    return <>{data.length === 0 ? <TableEmptyState /> : <>
+        <Container className='md:max-w-full md:w-[76rem] px-0 !bg-transparent'>
+            <h1 className="text-3xl font-bold uppercase mb-6">Your nominations</h1>
+            <div className={"space-x-3 mb-4"}>
+                <Button width="small" className={buttonClasses} variant={active === 'closed' ? 'green' : "secondary"} onClick={() => setActive('current')}>Current</Button>
+                <Button width="small" className={buttonClasses} variant={active === 'current' ? 'green' : 'secondary'} onClick={() => setActive('closed')}>Closed</Button>
+            </div>
+            <Table columns={columns} dataSource={filteredList} />
+            <TableMobile
+                data={filteredList}
+                active={active}
+                renderActionButtons={(record: Nomination) => <NominationActionButtons record={record} active={active} onEditClick={() => onEditClick(record)} onDeleteClick={() => onDeleteClick(record.nomination_id)} />}
+            />
+
+            {showDeleteModal.nomination_id && <ConfirmDeleteNominationModal isOpen={showDeleteModal.visible} nomination_id={showDeleteModal.nomination_id} onClose={() => setShowDeleteModal({ visible: false, nomination_id: null })} />}
+        </Container>
+    </>
+    }</>
+
+
+
 
 }

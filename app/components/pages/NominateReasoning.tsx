@@ -20,9 +20,10 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
 
     const [firstName, setFirstName] = useState("");
 
-    const [isNextActive, setIsNextActive] = useState(false);
+
 
     const searchParams = useSearchParams();
+
 
     const nomination_id = searchParams.get('nomination_id');
 
@@ -31,15 +32,7 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
         setFirstName(formData.first_name);
     }, [formData.first_name]);
 
-    const { register, handleSubmit, setValue, watch } = useForm();
-
-    const reasonInputValue = watch('reason');
-
-    console.log(reasonInputValue)
-
-    useEffect(() => {
-        setIsNextActive(!!reasonInputValue);
-    }, [reasonInputValue]);
+    const { register, handleSubmit, setValue } = useForm();
 
     useEffect(() => {
         if (formData.reason) {
@@ -77,10 +70,13 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
 
     return <>
         <ProgressUpdater setProgress={setProgress} value={2} />
-        <div className="p-5 space-y-10">
+        <div className="py-5 md:px-5">
             <div className='w-full h-[180px] relative'>
-                <Image src='/tsc-select-nominee-banner.png' fill className='object-cover' alt='Man checking board' />
+                <Image src='/tsc-reason-banner.png' fill className='object-cover' alt='Man checking board' />
             </div>
+        </div>
+        <div className="p-5 space-y-10">
+
             <div className='space-y-3'>
                 <h1 className="text-2xl md:text-3xl font-semibold uppercase">I&apos;d like to nominate <span className="text-tsc-pink">{firstName}</span> because...</h1>
                 <p className={anonymousPro.className + ' max-w-[600px] '}>Please let us know why you think this cube deserves the ‘cube of the month’ title 🏆⭐</p>
@@ -94,7 +90,7 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
                         <Button width='small' variant="secondary" type="button">back</Button>
                     </Link>
                     <Button type="submit"
-                        width='large' variant="primary" disabled={!isNextActive} >next</Button>
+                        width='large' variant="primary" >next</Button>
                 </div>}
             </form>
         </div>

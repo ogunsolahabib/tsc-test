@@ -7,7 +7,7 @@ interface ButtonProps {
     variant?: "primary" | "secondary" | 'green';
     loading?: boolean;
     disabled?: boolean;
-    width?: "small" | "medium" | "large";
+    width?: "small" | "medium" | "large" | 'fit';
     type?: "button" | "submit" | "reset";
 
 }

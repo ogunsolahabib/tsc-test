@@ -1,6 +1,7 @@
 import { API_BASE_URL } from "@/app/config";
 import getToken from "@/app/utils/getToken";
-import { cookies } from "next/headers";
+import routePaths from "@/app/utils/routePaths";
+import { revalidatePath } from "next/cache";
 
 
 export async function GET (req: Request, query: any) {
@@ -31,6 +32,8 @@ export async function DELETE (req: Request, {params}: any) {
 
     const data = await res.json();
 
+    revalidatePath(routePaths.nominations);
+
     return Response.json(data);
 }
 
@@ -48,6 +51,8 @@ const body = await req.json();
     });
 
     const data = await res.json();
+
+    revalidatePath(routePaths.nominations);
 
     return Response.json(data);
 }
