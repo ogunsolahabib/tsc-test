@@ -39,3 +39,13 @@ export async function loginUser(formData: FormData) {
     }
 
 }
+
+export async function logoutUser() {
+    const cookieStore = cookies();
+    cookieStore.set('tsc-authToken', '', {
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 30,
+        sameSite: 'lax',
+        path: '/'
+    });
+}
