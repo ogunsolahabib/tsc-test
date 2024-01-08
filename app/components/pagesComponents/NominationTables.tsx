@@ -76,7 +76,7 @@ export default function NominationTables({ data }: { data: Nomination[] }) {
 
 
 
-    return <ProtectedComponent>{data.length === 0 ? <TableEmptyState /> : <>
+    return <>{data.length === 0 ? <TableEmptyState /> : <>
         <Container className='md:max-w-full md:w-[76rem] px-0 !bg-transparent'>
             <h1 className="text-3xl font-bold uppercase mb-6">Your nominations</h1>
             <div className={"space-x-3 mb-4"}>
@@ -93,7 +93,7 @@ export default function NominationTables({ data }: { data: Nomination[] }) {
             {showDeleteModal.nomination_id && <ConfirmDeleteNominationModal isOpen={showDeleteModal.visible} nomination_id={showDeleteModal.nomination_id} onClose={() => setShowDeleteModal({ visible: false, nomination_id: null })} />}
         </Container>
     </>
-    }</ProtectedComponent>
+    }</>
 
 
 

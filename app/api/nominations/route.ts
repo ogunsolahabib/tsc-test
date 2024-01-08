@@ -7,43 +7,49 @@ import { cookies } from "next/headers";
 
 export async function GET (){
 
-    const res= await fetch(`${API_BASE_URL}/nomination`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'authorization': `Bearer ${getToken()}`
-        },
-    });
-
-    const nomineesRes= await fetch(`${API_BASE_URL}/nominee`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'authorization': `Bearer ${getToken()}`
-        }
-    });
-
-    const nominees = await nomineesRes.json()??{data: []};
-
+    try {
+        const res= await fetch(`${API_BASE_URL}/nomination`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${getToken()}`
+            },
+        });
     
-
-    const data = await res.json();
-
+        const nomineesRes= await fetch(`${API_BASE_URL}/nominee`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${getToken()}`
+            }
+        });
     
-    // convert nominees data to object
-    const nomineesObject= await nominees.data?.reduce((acc: any, nominee: any) => {
-        acc[nominee.nominee_id] = nominee
-        return acc
-    })??{};
+    
+        const nominees = await (typeof nomineesRes === 'object'?nomineesRes.json(): {data: []})??{data: []};
+    
+    
+        const data = await res.json();
+    
+        
+        // convert nominees data to object
+        const nomineesObject= await nominees.data?.reduce((acc: any, nominee: any) => {
+            acc[nominee.nominee_id] = nominee
+            return acc
+        })??{};
+    
+        const updatedData = data.data?.map((nomination: any) => {
+            const {first_name, last_name} = nomineesObject[nomination.nominee_id] || {first_name: 'N/A', last_name: 'N/A'};
+            nomination.first_name = first_name;
+            nomination.name= first_name + ' ' + last_name
+            return nomination
+        })??[];
+    
+        return Response.json(updatedData);
+    } catch (error) {
+       return Response.json({})
+    }
 
-    const updatedData = data.data?.map((nomination: any) => {
-        const {first_name, last_name} = nomineesObject[nomination.nominee_id] || {first_name: 'N/A', last_name: 'N/A'};
-        nomination.first_name = first_name;
-        nomination.name= first_name + ' ' + last_name
-        return nomination
-    })??[];
-
-    return Response.json(updatedData);
+   
 }
 
 export async function POST (req: Request,) {
@@ -63,7 +69,7 @@ export async function POST (req: Request,) {
 
     revalidatePath(routePaths.nominations);
 
-    return Response.json(data);
+    return Response.json({});
 
 }
 
