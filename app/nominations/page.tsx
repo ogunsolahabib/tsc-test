@@ -1,4 +1,4 @@
-import NominationTables from "../components/pages/NominationTables";
+import NominationTables from "../components/pagesComponents/NominationTables";
 
 export default async function Page() {
     const res = await import('@/app/api/nominations/route');

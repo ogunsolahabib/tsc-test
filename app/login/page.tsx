@@ -1,15 +1,16 @@
 import Container from "../components/shared/Container";
 import InputLabel from "../components/shared/InputLabel";
 import Input from "../components/shared/Input";
-import LoginButton from "../components/pages/LoginButton";
+import LoginButton from "../components/pagesComponents/LoginButton";
 import { loginUser } from "../actions";
 import { redirect } from "next/navigation";
 import getToken from "../utils/getToken";
 
-export default function Page() {
+export default function Page({ searchParams }: any) {
 
     if (!!getToken()) {
-        redirect('/')
+        const redirectUrl = searchParams?.resume ? `/${decodeURI(searchParams.resume)}` : '/';
+        redirect(redirectUrl);
     }
 
     return <main className="flex px-8 py-6 md:py-10">
@@ -20,13 +21,10 @@ export default function Page() {
                     <div>
                         <InputLabel required htmlFor="email">Email</InputLabel>
                         <Input name='email' type='email' id='email' required />
-
                     </div>
                     <div>
-
                         <InputLabel htmlFor="password">Password</InputLabel>
                         <Input name='password' type="password" id="password" required />
-
                     </div>
                     <LoginButton />
                 </div>

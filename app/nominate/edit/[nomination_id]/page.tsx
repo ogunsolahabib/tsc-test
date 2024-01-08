@@ -1,4 +1,4 @@
-import Overview from "@/app/components/pages/Overview";
+import Overview from "@/app/components/pagesComponents/Overview";
 import ProgresssWrapper from "@/app/components/shared/ProgressWrapper";
 
 
