@@ -3,12 +3,18 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 
-## Opening the project locally
+## Setting up the project locally
 
 Install dependencies:
 
 ```bash
 npm install
+```
+Environment variable:
+
+Create an `env.local` file and put:
+```env
+NEXT_PUBLIC_API_BASE_URL=https://cube-academy-api.cubeapis.com/api
 ```
 
 Run the development server:
@@ -22,7 +28,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 ## Challenges?
-- Using some of the newer Next.js features required deep dive into their docs.
 - Properly syncing local storage with the progress bar UI took a while. Got a custom hook from AI to fix it
 
 ## Extra technologies?
