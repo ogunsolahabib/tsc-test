@@ -15,7 +15,7 @@ interface ConfirmModalProps {
     cancelText?: React.ReactNode;
 }
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm, heading, description, confirmText, cancelText }) => {
+export default function ConfirmModal({ isOpen, onClose, onConfirm, heading, description, confirmText, cancelText }: React.PropsWithChildren<ConfirmModalProps>) {
 
 
     return <Modal isOpen={isOpen} onClose={onClose}>
@@ -31,4 +31,3 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm,
     </Modal>
 }
 
-export default ConfirmModal

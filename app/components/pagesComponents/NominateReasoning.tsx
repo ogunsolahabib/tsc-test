@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 
-const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> = ({ setProgress }) => {
+export default function NominateReasoning({ setProgress }: React.PropsWithChildren<{ setProgress?: React.SetStateAction<any> }>) {
     const router = useRouter();
 
     const { formData, updateFormData, resetFormData } = useFormData();
@@ -97,4 +97,3 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
     </ >
 }
 
-export default NominateReasoning

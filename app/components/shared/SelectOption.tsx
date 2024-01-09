@@ -8,10 +8,8 @@ interface SelectOptionProps {
 }
 
 
-const SelectOption: React.FC<SelectOptionProps> = ({ value, label, children, onSelect }) => {
+export default function SelectOption({ value, label, children, onSelect }: React.PropsWithChildren<SelectOptionProps>) {
     return <li onMouseDown={() => onSelect({ value, label })}>
         <Link href="#" className="block p-3">{label || children}</Link>
     </li>
 }
-
-export default SelectOption

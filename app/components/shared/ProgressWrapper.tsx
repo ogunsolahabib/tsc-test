@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 
 const Progress = dynamic(() => import("./Progress"), { loading: () => <ProgressStatic value={0} /> });
 
-const ProgresssWrapper = ({ children }: { children: React.ReactNode, currentProgress?: number }) => {
+export default function ProgresssWrapper({ children }: { children: React.ReactNode, currentProgress?: number }) {
     const { storedValue: progress, setValue: setProgress } = useLocalStorage('progress', 0);
 
     const [progressLocal, setProgressLocal] = useState(0);
@@ -32,4 +32,3 @@ const ProgresssWrapper = ({ children }: { children: React.ReactNode, currentProg
     </>
 }
 
-export default ProgresssWrapper

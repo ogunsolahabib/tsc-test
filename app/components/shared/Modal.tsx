@@ -6,7 +6,7 @@ interface ModalProps {
     isOpen: boolean
 }
 
-const Modal: React.FC<ModalProps & React.HTMLProps<HTMLDivElement>> = ({ children, onClose, isOpen }) => {
+export default function Modal({ children, onClose, isOpen }: React.PropsWithChildren<ModalProps & React.HTMLProps<HTMLDivElement>>) {
 
     const classes = classNames({
         'block': isOpen,
@@ -31,4 +31,3 @@ const Modal: React.FC<ModalProps & React.HTMLProps<HTMLDivElement>> = ({ childre
 
 }
 
-export default Modal

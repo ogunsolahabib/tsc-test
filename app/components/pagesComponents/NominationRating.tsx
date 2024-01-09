@@ -30,7 +30,7 @@ const calculateRatingLevel = (index: number) => {
     return (index + 1) / (ratingsList.length) * 100;
 };
 
-const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) => {
+export default function Rating({ setProgress }: { setProgress?: React.SetStateAction<any> }) {
     const [ratingValue, setRatingValue] = useState<string | undefined>(undefined);
 
     const router = useRouter();
@@ -116,5 +116,3 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
     </>
 
 }
-
-export default Rating

@@ -12,7 +12,7 @@ interface ButtonProps {
 
 }
 
-const Button: React.FC<ButtonProps & React.HTMLProps<HTMLButtonElement>> = ({ variant, children, className, loading, width = 'large', type, ...props }) => {
+export default function Button({ variant, children, className, loading, width = 'large', type, ...props }: React.PropsWithChildren<ButtonProps & React.HTMLProps<HTMLButtonElement>>) {
     const classes = classNames('px-6 py-3  font-semibold text-sm transition-background duration-300 uppercase disabled:cursor-not-allowed',
         {
             "bg-black text-white hover:bg-white hover:text-black hover:border-2 hover:border-black disabled:bg-tsc-mid-grey disabled:hover:border-0 disabled:hover:text-white": variant === "primary",
@@ -28,5 +28,3 @@ const Button: React.FC<ButtonProps & React.HTMLProps<HTMLButtonElement>> = ({ va
 
     return <button type={type} disabled={loading || props.disabled} className={classes} {...props}>{loading ? <span className="flex m-auto w-fit animate-spin"><Loading /></span> : children}</button>;
 }
-
-export default Button;
