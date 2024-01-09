@@ -1,11 +1,8 @@
 'use client';
 
 import Container from "../components/shared/Container"
-import dynamic from "next/dynamic";
-dynamic
+import ProtectedPageWrapper from "../components/shared/ProtectedPageWrapper";
 
-
-// const Progress = dynamic(() => import("../components/shared/Progress"), { ssr: false });
 
 export default function Layout({
     children,
@@ -14,10 +11,12 @@ export default function Layout({
 }) {
 
     return (
-        <main className="md:px-8 md:py-12">
-            <Container>
-                {children}
-            </Container>
-        </main >
+        <ProtectedPageWrapper>
+            <main className="md:px-8 md:py-12">
+                <Container>
+                    {children}
+                </Container>
+            </main >
+        </ProtectedPageWrapper>
     )
 }

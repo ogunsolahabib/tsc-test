@@ -55,7 +55,6 @@ export default function useFetchRequest(pathname: string) {
     }
     const DELETE = async () => {
         setLoading(true);
-        console.log(authToken, 'authToken');
         try {
         const response = await fetch(`${API_BASE_URL}/${pathname}`, {
             method: 'DELETE',

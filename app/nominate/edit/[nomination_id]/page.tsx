@@ -7,4 +7,6 @@ export default function Page({ params }: { params: { nomination_id: string } }) 
     return <ProgresssWrapper>
         <Overview nomination_id={params.nomination_id} />
     </ProgresssWrapper>
+
+
 }

@@ -4,6 +4,7 @@ import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 import { poppins } from './fonts'
 import { CookiesProvider } from 'next-client-cookies/server'
+import Providers from './components/shared/Providers'
 
 
 export const metadata: Metadata = {
@@ -18,13 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <CookiesProvider>
+      <Providers>
         <body className={poppins.className + ' bg-tsc-gradient lg:bg-black'}>
           <Header />
           {children}
           <Footer />
         </body>
-      </CookiesProvider>
+      </Providers>
     </html>
   )
 }

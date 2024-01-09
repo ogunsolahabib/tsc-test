@@ -15,7 +15,6 @@ import TableEmptyState from "./TableEmptyState";
 import { Nomination } from "@/app/types/Nomination";
 import TableMobile from "./TableMobile";
 import NominationActionButtons from "./NominationActionButtons";
-import ProtectedComponent from "../shared/ProtectedComponent";
 
 
 
