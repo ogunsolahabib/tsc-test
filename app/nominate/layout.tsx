@@ -1,5 +1,3 @@
-'use client';
-
 import Container from "../components/shared/Container"
 import ProtectedPageWrapper from "../components/shared/ProtectedPageWrapper";
 

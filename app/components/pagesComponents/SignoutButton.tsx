@@ -1,6 +1,5 @@
 
 import { logoutUser } from "@/app/actions";
-import { useCookies } from "next-client-cookies";
 
 
 

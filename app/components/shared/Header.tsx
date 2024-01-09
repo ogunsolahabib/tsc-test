@@ -5,7 +5,6 @@ import routePaths from "@/app/utils/routePaths";
 import getToken from "@/app/utils/getToken";
 import Link from "next/link";
 import Button from "./Button";
-import handleSignout from "@/app/utils/handleSignout";
 import SignoutButton from "../pagesComponents/SignoutButton";
 
 

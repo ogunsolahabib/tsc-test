@@ -54,7 +54,7 @@ export async function GET (){
 
 export async function POST (req: Request,) {
 
-    const body =await req.json();
+    const body = await req.json();
 
     const res= await fetch(`${API_BASE_URL}/nomination`, {
         method: 'POST',
