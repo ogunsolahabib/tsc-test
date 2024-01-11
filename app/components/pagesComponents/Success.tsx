@@ -8,12 +8,15 @@ import routePaths from "@/app/utils/routePaths";
 import useFormData from "@/app/hooks/useFormData";
 import { useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Success() {
     const { resetFormData } = useFormData();
+    const router = useRouter();
 
     useEffect(() => {
         resetFormData();
+        router.refresh();
     }, []);
 
     return <Container className='px-0'>

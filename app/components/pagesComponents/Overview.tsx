@@ -33,7 +33,9 @@ export default function Overview({ setProgress, nomination_id }: { setProgress?:
         }).then(() => {
             resetFormData();
             router.push(routePaths.success);
-            setSubmitLoading(false)
+            setSubmitLoading(false);
+        }).catch(() => {
+            setSubmitLoading(false);
         });
     }
 

@@ -30,7 +30,7 @@ const calculateRatingLevel = (index: number) => {
     return (index + 1) / (ratingsList.length) * 100;
 };
 
-const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) => {
+export default function Rating({ setProgress }: { setProgress?: React.SetStateAction<any> }) {
     const [ratingValue, setRatingValue] = useState<string | undefined>(undefined);
 
     const router = useRouter();
@@ -106,15 +106,13 @@ const Rating = ({ setProgress }: { setProgress?: React.SetStateAction<any> }) =>
             </div>
             {nomination_id ? <div className="flex w-fit mt-8 mx-auto">
                 <Button width='large' variant="primary" loading={loading} type="button" onClick={onNextClick}>Save</Button>
-            </div> : <div className="flex md:justify-between gap-2">
+            </div> : <div className="flex justify-between gap-2">
                 <Link href={routePaths.reason} className='basis-1/3 max-w-[12rem]'>
                     <Button className='w-full' width='fit' variant="secondary">back</Button>
                 </Link>
-                <Button className="basis-2/3 max-w-[18rem]" disabled={!ratingValue} type="submit" width='fit' variant="primary" loading={loading} onClick={onNextClick}>next</Button>
+                <Button disabled={!ratingValue} type="submit" width='large' variant="primary" loading={loading} onClick={onNextClick}>next</Button>
             </div>}
         </div >
     </>
 
 }
-
-export default Rating

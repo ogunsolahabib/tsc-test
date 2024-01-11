@@ -1,4 +1,4 @@
-import Success from "@/app/components/pages/Success";
+import Success from "@/app/components/pagesComponents/Success";
 
 export default function Page() {
     return <Success />

@@ -1,4 +1,4 @@
-import NominateReasoning from "@/app/components/pages/NominateReasoning";
+import NominateReasoning from "@/app/components/pagesComponents/NominateReasoning";
 import ProgresssWrapper from "@/app/components/shared/ProgressWrapper";
 
 export default function Page() {

@@ -1,4 +1,4 @@
-import NominationRating from "@/app/components/pages/NominationRating";
+import NominationRating from "@/app/components/pagesComponents/NominationRating";
 import ProgresssWrapper from "@/app/components/shared/ProgressWrapper";
 
 export default function Page() {

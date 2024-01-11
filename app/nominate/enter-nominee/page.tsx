@@ -1,4 +1,4 @@
-import NominateStart from "@/app/components/pages/NominateStart";
+import NominateStart from "@/app/components/pagesComponents/NominateStart";
 import ProgresssWrapper from "@/app/components/shared/ProgressWrapper";
 
 

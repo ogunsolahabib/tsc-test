@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className + ' bg-tsc-gradient'}>
+      <body className={poppins.className + ' bg-tsc-gradient lg:bg-black'}>
         <Header />
         {children}
         <Footer />

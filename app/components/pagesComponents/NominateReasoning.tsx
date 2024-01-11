@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 
-const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> = ({ setProgress }) => {
+export default function NominateReasoning({ setProgress }: React.PropsWithChildren<{ setProgress?: React.SetStateAction<any> }>) {
     const router = useRouter();
 
     const { formData, updateFormData, resetFormData } = useFormData();
@@ -85,16 +85,14 @@ const NominateReasoning: React.FC<{ setProgress?: React.SetStateAction<any> }> =
                 <TextArea rows={6} required label={"Reasoning"} {...register('reason')} autoFocus />
                 {nomination_id ? <div className="flex w-fit mt-8 mx-auto">
                     <Button width='large' variant="primary" type="submit">Save</Button>
-                </div> : <div className="flex justify-between">
+                </div> : <div className="flex justify-between gap-2 mt-6">
                     <Link href={routePaths.start}>
                         <Button width='small' variant="secondary" type="button">back</Button>
                     </Link>
-                    <Button type="submit"
-                        width='large' variant="primary" >next</Button>
+                    <Button type="submit" width='large' variant="primary" >next</Button>
                 </div>}
             </form>
         </div>
     </ >
 }
 
-export default NominateReasoning
