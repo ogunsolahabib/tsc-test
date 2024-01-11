@@ -28,7 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 ## Challenges?
-- Properly syncing local storage with the progress bar UI took a while
+- Use of LocalStorage to preserve form entries during nomination (because each step of the nomination is a separate route).
 
 ## Extra technologies?
 - classNames.js: for generating dynamic classNames for components
