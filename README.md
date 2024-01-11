@@ -10,7 +10,7 @@ Install dependencies:
 ```bash
 npm install
 ```
-Environment variable:
+Setup Environment variable:
 
 Create an `env.local` file and put:
 ```env
@@ -28,7 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 ## Challenges?
-- Properly syncing local storage with the progress bar UI took a while. Got a custom hook from AI to fix it
+- Properly syncing local storage with the progress bar UI took a while
 
 ## Extra technologies?
 - classNames.js: for generating dynamic classNames for components
@@ -38,7 +38,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Things to implement in extra time?
 - Image optimization (exported assets are a bit large)
-- Error handling!
 - Radio Group component for mobile
-- Make code DRYer than it currently is
 - More animations
