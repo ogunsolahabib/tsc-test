@@ -21,7 +21,7 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { register, control, handleSubmit, watch, setValue } = useForm();
+    const { register, control, handleSubmit, watch, reset, setValue } = useForm();
 
     const [isNextActive, setIsNextActive] = useState(false);
 
@@ -40,6 +40,13 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
             setValue('nominee_id', formData.nominee_id);
         }
     }, [])
+
+    useEffect(() => {
+        if (!nomination_id) {
+            resetFormData();
+            reset();
+        }
+    }, [nomination_id]);
 
     const handleSave = async (data: FieldValues) => {
         const res = await fetch(`/api/nominations/${nomination_id}`, {
