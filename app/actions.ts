@@ -4,13 +4,17 @@ import { cookies } from "next/headers";
 import { API_BASE_URL } from "./config";
 import { redirect } from "next/navigation";
 
-export async function loginUser(formData: FormData) {
+export async function loginUser(state: any, formData: FormData) {
+
     const cookieStore = cookies();
 
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
+    let success = false;
+
     try {
+
         const res = await fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
             headers: {
@@ -23,8 +27,7 @@ export async function loginUser(formData: FormData) {
         });
 
         if (res.ok) {
-        const data = await res.json();
-
+            const data = await res.json();
 
             cookieStore.set('tsc-authToken', decodeURI(data.data.authToken), {
                 httpOnly: true,
@@ -32,12 +35,45 @@ export async function loginUser(formData: FormData) {
                 sameSite: 'lax',
                 path: '/'
             });
+
+            success = true;
+
         }
-        
-        
+
+        else if (res.status === 401) {
+            success = false;
+            return {
+                ...state,
+                message: 'Incorrect email or password'
+            }
+
+        } else {
+            success = false;
+            return {
+                ...state,
+                message: "Something went wrong"
+            }
+        }
+
+
+
     } catch (err) {
-        console.log(err)
+        success = false;
+        return {
+            ...state,
+            err,
+            message: "Something went wrong"
+        }
     }
+    if (success || true) {
+        const { resume } = state;
+
+        const redirectUrl = resume ? `/${decodeURI(resume)}` : '/';
+
+        redirect(redirectUrl);
+    }
+
+
 
 }
 

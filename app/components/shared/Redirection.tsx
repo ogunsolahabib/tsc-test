@@ -1,5 +1,6 @@
 'use client';
 
+import LoadingPage from "@/app/icons/LoadingPage";
 import windowLocationRedirect from "@/app/utils/windowLocationRedirect";
 
 
@@ -10,5 +11,5 @@ export default function Redirection() {
         windowLocationRedirect();
     }
 
-    return <></>
+    return <><LoadingPage /></>
 }
