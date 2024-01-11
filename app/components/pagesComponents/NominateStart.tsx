@@ -102,7 +102,7 @@ export default function NominateStart({ setProgress, allNominees }: { setProgres
                 />
                 {nomination_id ? <div className="flex w-fit mt-8 mx-auto">
                     <Button width='large' variant="primary" type="submit">Save</Button>
-                </div> : <div className="flex justify-between mt-6">
+                </div> : <div className="flex justify-between gap-2 mt-6">
                     <Button width='small' variant="secondary" onClick={() => setIsModalOpen(true)}>back</Button>
                     <Button width='large' variant="primary" disabled={!isNextActive} type="submit">next</Button>
                 </div>}
